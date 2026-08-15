@@ -16,7 +16,13 @@
         {%- for item in tier.items %}
           <div class="sponsor">
             {%- if item.logo %}
-              <img src="{{ item.logo }}" alt="{{ item.name }}" loading="lazy" />
+              <img
+                src="{{ item.logo }}"
+                alt="{{ item.name }}"
+                width="{{ item.width }}"
+                height="{{ item.height }}"
+                loading="lazy"
+              />
               {%- if item.showName %}<p class="sponsor__name">{{ item.name }}</p>{% endif %}
             {%- else %}
               <p class="sponsor__name sponsor__name--only">{{ item.name }}</p>

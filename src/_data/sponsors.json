@@ -7,19 +7,31 @@
       "items": [
         {
           "name": "Fountain Electric & Services",
-          "logo": "/assets/img/sponsors/fountain-electric.png"
+          "logo": "/assets/img/sponsors/fountain-electric.png",
+          "width": 700,
+          "height": 248
         },
-        { "name": "Meta", "logo": "/assets/img/sponsors/meta.png" }
+        {
+          "name": "Meta",
+          "logo": "/assets/img/sponsors/meta.png",
+          "width": 700,
+          "height": 342
+        }
       ]
     },
     {
       "name": "Overlook",
       "size": "lg",
       "items": [
-        { "name": "Inspire Carolina", "logo": null },
+        {
+          "name": "Inspire Carolina",
+          "logo": null
+        },
         {
           "name": "Century Fire Protection",
-          "logo": "/assets/img/sponsors/century-fire-protection.png"
+          "logo": "/assets/img/sponsors/century-fire-protection.png",
+          "width": 700,
+          "height": 417
         }
       ]
     },
@@ -29,20 +41,28 @@
       "items": [
         {
           "name": "Main Street Family Medicine",
-          "logo": "/assets/img/sponsors/main-street-family-medicine.jpg"
+          "logo": "/assets/img/sponsors/main-street-family-medicine.jpg",
+          "width": 540,
+          "height": 540
         },
         {
           "name": "Parton Lumber",
-          "logo": "/assets/img/sponsors/parton-lumber.png"
+          "logo": "/assets/img/sponsors/parton-lumber.png",
+          "width": 540,
+          "height": 850
         },
         {
           "name": "Chick-fil-A Forest City",
-          "logo": "/assets/img/sponsors/chick-fil-a-forest-city.jpg"
+          "logo": "/assets/img/sponsors/chick-fil-a-forest-city.jpg",
+          "width": 540,
+          "height": 405
         },
         {
           "name": "Thomas Jefferson Classical Academy",
           "logo": "/assets/img/sponsors/thomas-jefferson-classical-academy.png",
-          "showName": true
+          "showName": true,
+          "width": 540,
+          "height": 540
         }
       ]
     },
@@ -52,17 +72,28 @@
       "items": [
         {
           "name": "Dell Technologies",
-          "logo": "/assets/img/sponsors/dell-technologies.png"
+          "logo": "/assets/img/sponsors/dell-technologies.png",
+          "width": 540,
+          "height": 309
         },
         {
           "name": "Duke Energy",
-          "logo": "/assets/img/sponsors/duke-energy.png"
+          "logo": "/assets/img/sponsors/duke-energy.png",
+          "width": 540,
+          "height": 180
         },
         {
           "name": "Bank of America",
-          "logo": "/assets/img/sponsors/bank-of-america.png"
+          "logo": "/assets/img/sponsors/bank-of-america.png",
+          "width": 540,
+          "height": 304
         },
-        { "name": "Leidos", "logo": "/assets/img/sponsors/leidos.png" }
+        {
+          "name": "Leidos",
+          "logo": "/assets/img/sponsors/leidos.png",
+          "width": 540,
+          "height": 130
+        }
       ]
     },
     {
@@ -71,17 +102,26 @@
       "items": [
         {
           "name": "Carolina Chiropractic Plus",
-          "logo": "/assets/img/sponsors/carolina-chiropractic-plus.png"
+          "logo": "/assets/img/sponsors/carolina-chiropractic-plus.png",
+          "width": 500,
+          "height": 179
         },
         {
           "name": "Gene Haas Foundation",
-          "logo": "/assets/img/sponsors/gene-haas-foundation.png"
+          "logo": "/assets/img/sponsors/gene-haas-foundation.png",
+          "width": 540,
+          "height": 359
         },
         {
           "name": "Weichert, Realtors - Unlimited",
-          "logo": "/assets/img/sponsors/weichert-realtors.png"
+          "logo": "/assets/img/sponsors/weichert-realtors.png",
+          "width": 540,
+          "height": 211
         },
-        { "name": "Moore Family", "logo": null }
+        {
+          "name": "Moore Family",
+          "logo": null
+        }
       ]
     }
   ]
