@@ -4,24 +4,29 @@ Steps to take this repository from "code exists" to "lynkrobotics.org serves
 it". Everything here is done once. Day-to-day publishing is covered in
 [README.md](README.md).
 
-Steps 1–3 are yours; nothing is live until you finish step 4.
+Nothing reaches lynkrobotics.org until step 4 (DNS). Steps 1–3 are safe to
+do at any time — the current site keeps serving throughout.
 
 ---
 
-## 1. Review the site locally
+## 1. Make Pages available, then preview on the web
+
+Reviewing does not require running anything locally — see step 3, which
+publishes the whole site to a GitHub URL while lynkrobotics.org carries on
+serving the current Google Sites page untouched.
+
+If you would rather review locally as well:
 
 ```bash
 git clone https://github.com/LynkRobotics/website.git
 cd website
-git checkout claude/lynk-robotics-github-setup-c8ww1j
 npm install
 npm start
 ```
 
-Open <http://localhost:8080> and click through every page. Compare against the
-current site at <https://www.inspirecarolina.org/lynk>.
+Open <http://localhost:8080>.
 
-Things worth looking at specifically:
+Either way, things worth looking at specifically:
 
 - The home page is the old `/lynk` page, with the animated logo hero.
 - Investor logos, mentor photos and board photos are all carried across.
@@ -30,39 +35,59 @@ Things worth looking at specifically:
 - Try it narrow — drag the window down to phone width. The old site was not
   especially good on mobile; this one should be.
 
-## 2. Create the `main` branch
+## 2. The `main` branch
 
-The repository currently has no `main` branch — it was empty before this work,
-so the migration branch is the only branch that exists. `main` is what the
-deploy workflow watches, so it has to exist before anything can publish.
-
-Once you are happy with the review:
-
-```bash
-git checkout claude/lynk-robotics-github-setup-c8ww1j
-git branch main
-git push -u origin main
-```
-
-Then in **Settings → General → Default branch**, confirm the default is `main`.
-
-> Nothing is published yet. GitHub Pages is not switched on until step 3, so
-> pushing `main` is safe.
+Done — `main` exists and is the default branch. Every push to it triggers
+*Deploy to GitHub Pages*, which is why nothing publishes until Pages is
+switched on in step 3.
 
 ## 3. Turn on GitHub Pages
 
-In the repository, go to **Settings → Pages**:
+**Pages must be available for this repository first.** GitHub only serves
+Pages from a *private* repository on the Team plan or above. On the free plan
+the Pages settings page will say so, and the deploy fails with
+`Get Pages site failed … verify that the repository has Pages enabled`.
+
+Pick one:
+
+- **Make the repository public** (recommended). Everything in it is already
+  public information — the site's own content — and this is how almost every
+  FRC team's site repository is set up. Settings → General → Danger Zone →
+  Change visibility.
+- **Or upgrade the organization to GitHub Team**, and keep it private.
+
+Then go to **Settings → Pages**:
 
 1. **Build and deployment → Source:** choose **GitHub Actions**.
    (Not "Deploy from a branch" — this repo builds with Eleventy first.)
-2. **Custom domain:** enter `lynkrobotics.org` and save.
-   GitHub will report the domain as unverified until step 4 — that is expected.
-3. Leave **Enforce HTTPS** unchecked for now. Come back and tick it after
-   step 4, once GitHub has issued the certificate.
+2. **Custom domain:** leave it **empty** for now. See step 3b — filling it in
+   before DNS moves makes the preview URL unreachable.
+3. Open the **Actions** tab, re-run *Deploy to GitHub Pages*, and confirm it
+   goes green.
 
-Then open the **Actions** tab and confirm the *Deploy to GitHub Pages*
-workflow ran and went green. At this point the site is live at
-`https://lynkrobotics.github.io/website/` — the custom domain still needs DNS.
+### 3b. Review the real site before touching DNS
+
+With the custom domain empty, run the **Deploy preview** workflow:
+Actions → *Deploy preview* → **Run workflow**.
+
+It builds the site for the project Pages sub-path and publishes it to:
+
+**<https://lynkrobotics.github.io/website/>**
+
+That is the whole site, clickable, with working links, images and navigation —
+and `lynkrobotics.org` is untouched and still serving the current Google Sites
+page the entire time. Review there as long as you like.
+
+The preview also serves a `robots.txt` that disallows crawling, so it will not
+compete with the real site in search results.
+
+### 3c. When you are happy
+
+1. **Settings → Pages → Custom domain:** enter `lynkrobotics.org` and save.
+2. Do step 4 below (DNS).
+3. Actions → *Deploy to GitHub Pages* → **Run workflow**, to replace the
+   preview build with the real one. (Any later push to `main` does this too.)
+4. Come back and tick **Enforce HTTPS** once GitHub has issued the certificate.
 
 ## 4. Point the DNS at GitHub
 
@@ -174,15 +199,16 @@ Then update the remaining Home page:
 
 ## Checklist
 
-- [ ] Reviewed locally with `npm start`
-- [ ] `main` branch created and set as default
-- [ ] Pages source set to **GitHub Actions**
+- [x] `main` branch created and set as default
+- [ ] Repository made public (or org upgraded to Team) so Pages is available
+- [ ] Pages source set to **GitHub Actions**, custom domain left empty
+- [ ] *Deploy preview* run; site reviewed at lynkrobotics.github.io/website/
 - [ ] Custom domain set to `lynkrobotics.org`
-- [ ] First deploy went green in the Actions tab
-- [ ] Squarespace A record and `www` CNAME removed
+- [ ] Squarespace apex `A` record and `www` CNAME removed
 - [ ] Domain forwarding rule turned off at the registrar
-- [ ] GitHub A + AAAA records added on the apex
+- [ ] GitHub `A` + `AAAA` records added on the apex
 - [ ] `www` CNAME points to `lynkrobotics.github.io.`
+- [ ] *Deploy to GitHub Pages* re-run to replace the preview build
 - [ ] Enforce HTTPS ticked
 - [ ] Google Site trimmed to Home, links repointed
 - [ ] Sitemap submitted to Search Console

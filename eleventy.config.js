@@ -1,10 +1,24 @@
+import { EleventyHtmlBasePlugin } from "@11ty/eleventy";
+
 /**
  * Eleventy configuration for lynkrobotics.org
  *
  * Source lives in src/, the built site is written to _site/.
  * Everything under src/assets/ is copied through untouched.
+ *
+ * PATH_PREFIX lets the same source build for a sub-path. The live site is
+ * served at the root of lynkrobotics.org and needs no prefix; the preview
+ * deploy (see .github/workflows/preview.yml) is served from
+ * lynkrobotics.github.io/website/ and sets PATH_PREFIX=/website/ so that
+ * every root-relative link and asset still resolves.
  */
+const PATH_PREFIX = process.env.PATH_PREFIX || "/";
+
 export default function (eleventyConfig) {
+  // Rewrites href/src in the built HTML to sit under PATH_PREFIX.
+  // A no-op when the prefix is "/".
+  eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
+
   // Static assets pass straight through to the built site.
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/CNAME");
@@ -49,6 +63,7 @@ export default function (eleventyConfig) {
   eleventyConfig.addFilter("year", () => new Date().getFullYear());
 
   return {
+    pathPrefix: PATH_PREFIX,
     dir: {
       input: "src",
       output: "_site",

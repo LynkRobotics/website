@@ -13,9 +13,9 @@ eleventyExcludeFromCollections: true
     <title>Redirecting…</title>
     <link rel="canonical" href="{{ redirect.to | absoluteUrl(site.url) }}" />
     <meta name="robots" content="noindex" />
-    <meta http-equiv="refresh" content="0; url={{ redirect.to }}" />
+    <meta http-equiv="refresh" content="0; url={{ redirect.to | url }}" />
     <script>
-      window.location.replace("{{ redirect.to }}" + window.location.hash);
+      window.location.replace("{{ redirect.to | url }}" + window.location.hash);
     </script>
   </head>
   <body>

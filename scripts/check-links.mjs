@@ -14,6 +14,11 @@ import path from "node:path";
 
 const SITE = path.resolve("_site");
 
+// Preview builds are served from a sub-path (see eleventy.config.js), so
+// links come out as /website/faqs/ rather than /faqs/. Strip the prefix
+// before resolving them against _site/.
+const PATH_PREFIX = (process.env.PATH_PREFIX || "/").replace(/\/+$/, "");
+
 async function walk(dir) {
   const out = [];
   for (const entry of await readdir(dir, { withFileTypes: true })) {
@@ -26,7 +31,10 @@ async function walk(dir) {
 
 /** Resolves a site-root-relative URL to a file that should exist on disk. */
 function candidates(url) {
-  const clean = url.split("#")[0].split("?")[0];
+  let clean = url.split("#")[0].split("?")[0];
+  if (PATH_PREFIX && clean.startsWith(`${PATH_PREFIX}/`)) {
+    clean = clean.slice(PATH_PREFIX.length);
+  }
   if (!clean || clean === "/") return [path.join(SITE, "index.html")];
   const base = path.join(SITE, decodeURIComponent(clean));
   return clean.endsWith("/")

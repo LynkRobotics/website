@@ -3,14 +3,16 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Website for LYNK Robotics (FRC Team 9496) — lynkrobotics.org",
+  "description": "Website for LYNK Robotics (FRC Team 9496) \u2014 lynkrobotics.org",
   "license": "UNLICENSED",
   "scripts": {
     "start": "eleventy --serve",
     "dev": "eleventy --serve",
     "build": "eleventy",
     "check": "eleventy && node scripts/check-links.mjs",
-    "clean": "rm -rf _site"
+    "clean": "rm -rf _site",
+    "build:preview": "PATH_PREFIX=/website/ eleventy",
+    "check:preview": "PATH_PREFIX=/website/ eleventy && PATH_PREFIX=/website/ node scripts/check-links.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0"

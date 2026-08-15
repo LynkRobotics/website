@@ -75,7 +75,18 @@ To check the whole site builds cleanly and no links are broken:
 npm run check
 ```
 
-### 3. Publish
+### 3. Or review it on the web
+
+If you would rather not run anything locally, push the branch and run the
+**Deploy preview** workflow (Actions → *Deploy preview* → Run workflow). It
+publishes to <https://lynkrobotics.github.io/website/> without touching
+lynkrobotics.org.
+
+Note that the preview and the live site share one GitHub Pages slot: whichever
+workflow ran last is what Pages serves. After previewing, re-run **Deploy to
+GitHub Pages** to put the live build back.
+
+### 4. Publish
 
 Merge the pull request on GitHub. The **Deploy to GitHub Pages** workflow runs
 automatically; watch it under the repository's **Actions** tab. When it goes
@@ -117,6 +128,7 @@ in `src/_includes/`.
 | `npm run build` | Build the site into `_site/`                               |
 | `npm run check` | Build, then verify every internal link resolves            |
 | `npm run clean` | Delete `_site/`                                            |
+| `npm run check:preview` | Build and check the sub-path preview build         |
 
 Requires Node.js 20 or newer.
 
