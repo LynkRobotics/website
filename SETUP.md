@@ -43,27 +43,23 @@ switched on in step 3.
 
 ## 3. Turn on GitHub Pages
 
-**Pages must be available for this repository first.** GitHub only serves
-Pages from a *private* repository on the Team plan or above. On the free plan
-the Pages settings page will say so, and the deploy fails with
-`Get Pages site failed … verify that the repository has Pages enabled`.
+Done — Pages is enabled, the source is GitHub Actions, and *Deploy to GitHub
+Pages* is running green on every push to `main`.
 
-Pick one:
+Two settings still matter:
 
-- **Make the repository public** (recommended). Everything in it is already
-  public information — the site's own content — and this is how almost every
-  FRC team's site repository is set up. Settings → General → Danger Zone →
-  Change visibility.
-- **Or upgrade the organization to GitHub Team**, and keep it private.
+1. **Custom domain — clear it for now.** While `lynkrobotics.org` sits in that
+   box, GitHub 301s the project URL to it, and `lynkrobotics.org` still
+   resolves to Squarespace. So the preview in step 3b is unreachable until the
+   box is empty. Put it back in step 3c.
+2. **Pages visibility.** This repository is private. If Settings → Pages offers
+   a visibility control and it is set to **Private**, only organization members
+   can load the site — which would make lynkrobotics.org members-only after the
+   cutover. Set it to **Public** before step 4. (If no such control appears,
+   the site is already public and there is nothing to do.)
 
-Then go to **Settings → Pages**:
-
-1. **Build and deployment → Source:** choose **GitHub Actions**.
-   (Not "Deploy from a branch" — this repo builds with Eleventy first.)
-2. **Custom domain:** leave it **empty** for now. See step 3b — filling it in
-   before DNS moves makes the preview URL unreachable.
-3. Open the **Actions** tab, re-run *Deploy to GitHub Pages*, and confirm it
-   goes green.
+Sanity check for both: open the preview URL in a private/incognito window. If
+it loads without a GitHub login, the public is seeing what you are seeing.
 
 ### 3b. Review the real site before touching DNS
 
@@ -200,8 +196,9 @@ Then update the remaining Home page:
 ## Checklist
 
 - [x] `main` branch created and set as default
-- [ ] Repository made public (or org upgraded to Team) so Pages is available
-- [ ] Pages source set to **GitHub Actions**, custom domain left empty
+- [x] Pages enabled, source set to **GitHub Actions**
+- [ ] Custom domain box cleared so the preview URL works
+- [ ] Pages visibility confirmed **Public** (checked in an incognito window)
 - [ ] *Deploy preview* run; site reviewed at lynkrobotics.github.io/website/
 - [ ] Custom domain set to `lynkrobotics.org`
 - [ ] Squarespace apex `A` record and `www` CNAME removed
