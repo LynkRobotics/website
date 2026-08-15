@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://lynkrobotics.org/sitemap.xml
+Sitemap: https://www.lynkrobotics.org/sitemap.xml

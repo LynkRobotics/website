@@ -119,13 +119,19 @@ GIFs. They are far smaller than GIF and drop into an ordinary `<img>`.
 
 `main` is the live site. Pushing to `main` triggers
 `.github/workflows/deploy.yml`, which builds and deploys to GitHub Pages,
-served at lynkrobotics.org.
+served at www.lynkrobotics.org.
 
 **Do all work on a branch and open a pull request.** A human previews locally
 with `npm start`, then merges. Never commit straight to `main` unless asked to.
 
-`src/CNAME` must keep containing `lynkrobotics.org` — the deploy fails loudly
-if it goes missing, because losing it would drop the custom domain.
+`src/CNAME` must keep containing `www.lynkrobotics.org` — the deploy fails
+loudly if it goes missing, because losing it would drop the custom domain, and
+`check-links.mjs` fails if the value changes.
+
+**Do not switch the canonical host back to the bare apex.** Browsers that
+visited the pre-migration Squarespace site cached a permanent
+`lynkrobotics.org → www.lynkrobotics.org` redirect. Serving at `www` is what
+keeps those browsers out of a redirect loop; README.md explains it in full.
 
 ## Known content issues (inherited from the old Google Sites site)
 

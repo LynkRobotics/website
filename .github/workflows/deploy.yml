@@ -34,6 +34,7 @@ jobs:
       - name: Verify the custom domain survived the build
         run: |
           test -f _site/CNAME || { echo "::error::_site/CNAME missing — the custom domain would be dropped"; exit 1; }
+          grep -qx "www.lynkrobotics.org" _site/CNAME || { echo "::error::_site/CNAME is not www.lynkrobotics.org — this would move the canonical host and can cause a redirect loop"; exit 1; }
           echo "CNAME: $(cat _site/CNAME)"
 
       - uses: actions/configure-pages@v5

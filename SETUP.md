@@ -1,215 +1,122 @@
-# One-time setup
+# Setup and cutover
 
-Steps to take this repository from "code exists" to "lynkrobotics.org serves
-it". Everything here is done once. Day-to-day publishing is covered in
-[README.md](README.md).
+How lynkrobotics.org got from the old Google Sites site to this repository, and
+what is left to do. Day-to-day publishing is in [README.md](README.md).
 
-Nothing reaches lynkrobotics.org until step 4 (DNS). Steps 1–3 are safe to
-do at any time — the current site keeps serving throughout.
+**The site is live at <https://www.lynkrobotics.org>.** Everything below is
+either done or optional; the only outstanding item is tidying the Google Site
+(step 5).
 
 ---
 
-## 1. Make Pages available, then preview on the web
+## Where things stand
 
-Reviewing does not require running anything locally — see step 3, which
-publishes the whole site to a GitHub URL while lynkrobotics.org carries on
-serving the current Google Sites page untouched.
+| | |
+| --- | --- |
+| Repository | `main` is the default branch and the source of truth |
+| Pages | Enabled, source **GitHub Actions**, deploying green on every push |
+| Custom domain | `www.lynkrobotics.org` — **canonical**, see below |
+| Apex | `lynkrobotics.org` 301-redirects to `www` |
+| HTTPS | Certificate issued, Enforce HTTPS on |
+| DNS | Apex → GitHub `A` records; `www` → `lynkrobotics.github.io` |
 
-If you would rather review locally as well:
+## Why `www` is the canonical host
 
-```bash
-git clone https://github.com/LynkRobotics/website.git
-cd website
-npm install
-npm start
-```
+This matters enough that it is also in README.md and CLAUDE.md: **do not
+reverse it.**
 
-Open <http://localhost:8080>.
+Before the migration Squarespace served `lynkrobotics.org` and answered with a
+`301 Moved Permanently` to `www.lynkrobotics.org`. A 301 tells the browser
+"never ask again", so every browser that visited the old domain still has that
+redirect cached locally.
 
-Either way, things worth looking at specifically:
+The site originally launched with the apex as canonical, which meant GitHub
+sent `www` back to the apex. For anyone holding the cached Squarespace
+redirect, that was an infinite loop — `ERR_TOO_MANY_REDIRECTS`, reproducible in
+a normal window and invisible in incognito. Serving at `www` means the stale
+cached redirect lands on a real page.
 
-- The home page is the old `/lynk` page, with the animated logo hero.
-- Investor logos, mentor photos and board photos are all carried across.
-- `/seasons/2025/` and `/seasons/2024/` replace the old season pages, with the
-  photo carousels turned into grids.
-- Try it narrow — drag the window down to phone width. The old site was not
-  especially good on mobile; this one should be.
+Switching back would recreate the loop from the other side, since browsers will
+now have cached GitHub's own apex → `www` redirect.
 
-## 2. The `main` branch
+If a visitor still reports the loop, they visited during the brief window when
+the apex was canonical. One-time fix in their browser: DevTools → Application →
+Storage → **Clear site data**.
 
-Done — `main` exists and is the default branch. Every push to it triggers
-*Deploy to GitHub Pages*, which is why nothing publishes until Pages is
-switched on in step 3.
+## DNS, for reference
 
-## 3. Turn on GitHub Pages
+Nameservers are `ns-cloud-b1.googledomains.com` … `b4`, i.e. the Google Domains
+/ Squarespace Domains setup.
 
-Done — Pages is enabled, the source is GitHub Actions, and *Deploy to GitHub
-Pages* is running green on every push to `main`.
+| Host | Type | Value |
+| --- | --- | --- |
+| `@` | A | `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` |
+| `@` | AAAA | `2606:50c0:8000::153`, `8001::153`, `8002::153`, `8003::153` — *not yet added* |
+| `www` | CNAME | `lynkrobotics.github.io.` |
 
-Two settings still matter:
+The apex `A` records are still needed even though `www` is canonical — they are
+what lets GitHub answer on the apex in order to redirect it.
 
-1. **Custom domain — clear it for now.** While `lynkrobotics.org` sits in that
-   box, GitHub 301s the project URL to it, and `lynkrobotics.org` still
-   resolves to Squarespace. So the preview in step 3b is unreachable until the
-   box is empty. Put it back in step 3c.
-2. **Pages visibility.** This repository is private. If Settings → Pages offers
-   a visibility control and it is set to **Private**, only organization members
-   can load the site — which would make lynkrobotics.org members-only after the
-   cutover. Set it to **Public** before step 4. (If no such control appears,
-   the site is already public and there is nothing to do.)
+`docs.lynkrobotics.org` is unrelated and should be left alone.
 
-Sanity check for both: open the preview URL in a private/incognito window. If
-it loads without a GitHub login, the public is seeing what you are seeing.
-
-### 3b. Review the real site before touching DNS
-
-With the custom domain empty, run the **Deploy preview** workflow:
-Actions → *Deploy preview* → **Run workflow**.
-
-It builds the site for the project Pages sub-path and publishes it to:
-
-**<https://lynkrobotics.github.io/website/>**
-
-That is the whole site, clickable, with working links, images and navigation —
-and `lynkrobotics.org` is untouched and still serving the current Google Sites
-page the entire time. Review there as long as you like.
-
-The preview also serves a `robots.txt` that disallows crawling, so it will not
-compete with the real site in search results.
-
-### 3c. When you are happy
-
-1. **Settings → Pages → Custom domain:** enter `lynkrobotics.org` and save.
-2. Do step 4 below (DNS).
-3. Actions → *Deploy to GitHub Pages* → **Run workflow**, to replace the
-   preview build with the real one. (Any later push to `main` does this too.)
-4. Come back and tick **Enforce HTTPS** once GitHub has issued the certificate.
-
-## 4. Point the DNS at GitHub
-
-This is the step that actually moves lynkrobotics.org.
-
-**Where:** the domain's nameservers are
-`ns-cloud-b1.googledomains.com` … `ns-cloud-b4.googledomains.com`, i.e. the
-Google Domains / Squarespace Domains setup. Edit the zone wherever you manage
-it today. (`docs.lynkrobotics.org` is already on GitHub Pages, so this zone has
-been pointed at GitHub before.)
-
-### Records to remove
-
-| Host                    | Current value                       | Why |
-| ----------------------- | ----------------------------------- | --- |
-| `lynkrobotics.org` (apex) | `A 198.185.159.144`               | Squarespace, serves the forward to inspirecarolina.org |
-| `www`                   | `CNAME ext-sq.squarespace.com`      | Same |
-
-Also turn off any **domain forwarding / redirect** rule for lynkrobotics.org in
-the registrar's control panel. If the forward stays on, it will keep
-intercepting requests no matter what the DNS records say.
-
-### Records to add
-
-Apex — four `A` records, all host `@` (or blank, depending on the UI):
-
-```
-185.199.108.153
-185.199.109.153
-185.199.110.153
-185.199.111.153
-```
-
-Apex — four `AAAA` records, same host (optional but recommended, for IPv6):
-
-```
-2606:50c0:8000::153
-2606:50c0:8001::153
-2606:50c0:8002::153
-2606:50c0:8003::153
-```
-
-`www` — one `CNAME`:
-
-```
-www   CNAME   lynkrobotics.github.io.
-```
-
-Leave `docs.lynkrobotics.org` exactly as it is.
-
-### After DNS propagates
-
-Propagation is usually minutes, occasionally a few hours. Check with:
-
-```bash
-dig +short lynkrobotics.org
-dig +short www.lynkrobotics.org
-```
-
-You want the apex to return the four `185.199.*` addresses and `www` to return
-`lynkrobotics.github.io`.
-
-Then go back to **Settings → Pages**, confirm the custom domain shows a green
-check, and **tick Enforce HTTPS**. GitHub redirects `www.lynkrobotics.org` to
-`lynkrobotics.org` automatically.
+**Still worth doing:** the apex has no `AAAA` records, so IPv6-only visitors
+cannot reach it. Not urgent — every other visitor is fine, and `www` already
+has IPv6 — but add them when convenient.
 
 ## 5. Tidy up the Google Site
 
-Once lynkrobotics.org is serving the new site, edit the Google Site at
-inspirecarolina.org so the two do not compete for the same search results.
+The one outstanding task. Edit the Google Site at inspirecarolina.org so the two
+sites do not compete for the same search results.
 
-Keep the **Home** page and the **Board Members - ICI** page — the Inspire
-Carolina board stays on the Inspire Carolina site, and lynkrobotics.org links
-out to it. Delete these, which now live on lynkrobotics.org:
+**Keep** the Home page and **Board Members - ICI** — the Inspire Carolina board
+belongs to the non-profit, and lynkrobotics.org links out to it. Keep **Our
+People** too, as that page's parent.
 
-| Google Sites page       | Now at                                |
-| ----------------------- | ------------------------------------- |
-| Invest                  | https://lynkrobotics.org/invest/       |
-| Our People → Mentors - LYNK | https://lynkrobotics.org/our-people/mentors/ |
+**Delete** these, which now live on lynkrobotics.org:
 
-Leave **Our People** in place as the parent of Board Members - ICI. Its intro
-text mentions mentors, so it is worth pointing that sentence at
-<https://lynkrobotics.org/our-people/mentors/>.
-| Experiences That Matter | https://lynkrobotics.org/experiences/  |
-| LYNK                    | https://lynkrobotics.org/             |
-| LYNK → LYNK Registration | https://lynkrobotics.org/registration/ |
-| LYNK → LYNK FAQs        | https://lynkrobotics.org/faqs/         |
-| LYNK → 2025 Season      | https://lynkrobotics.org/seasons/2025/ |
-| LYNK → 2024 Season (Rookie) | https://lynkrobotics.org/seasons/2024/ |
-| LYNK → Member Login     | *not migrated — see README*            |
+| Google Sites page | Now at |
+| --- | --- |
+| Invest | <https://www.lynkrobotics.org/invest/> |
+| Our People → Mentors - LYNK | <https://www.lynkrobotics.org/our-people/mentors/> |
+| Experiences That Matter | <https://www.lynkrobotics.org/experiences/> |
+| LYNK | <https://www.lynkrobotics.org/> |
+| LYNK → LYNK Registration | <https://www.lynkrobotics.org/registration/> |
+| LYNK → LYNK FAQs | <https://www.lynkrobotics.org/faqs/> |
+| LYNK → 2025 Season | <https://www.lynkrobotics.org/seasons/2025/> |
+| LYNK → 2024 Season (Rookie) | <https://www.lynkrobotics.org/seasons/2024/> |
+| LYNK → Member Login | *not migrated — see README.md* |
 
-Then update the remaining Home page:
+Then update what remains:
 
-- Trim the navigation down to Home plus a single outbound "LYNK Robotics" link
-  to `https://lynkrobotics.org`.
-- The existing **LYNK Robotics Info** button should point to
-  `https://lynkrobotics.org`.
-- The existing **Investor Information** button should point to
-  `https://lynkrobotics.org/invest/`.
-- The body text links "LYNK" — point that at `https://lynkrobotics.org` too.
+- Trim the navigation to Home, Our People and Board Members - ICI, plus a single
+  outbound **LYNK Robotics** link to <https://www.lynkrobotics.org>.
+- **LYNK Robotics Info** button → <https://www.lynkrobotics.org>
+- **Investor Information** button → <https://www.lynkrobotics.org/invest/>
+- The body text link on "LYNK" → <https://www.lynkrobotics.org>
+- On **Our People**, the sentence about mentors → <https://www.lynkrobotics.org/our-people/mentors/>
 
 ## 6. Optional, once things settle
 
-- **Search Console.** Add `lynkrobotics.org` at
+- **Search Console.** Add `www.lynkrobotics.org` at
   <https://search.google.com/search-console> and submit
-  `https://lynkrobotics.org/sitemap.xml`. This is what tells Google to move
-  its index across; without it the Google Sites URLs linger for weeks.
-- **Branch protection.** Settings → Branches → add a rule for `main` requiring
-  a pull request. Makes the review step in README.md a guarantee rather than a
-  habit.
+  `https://www.lynkrobotics.org/sitemap.xml`. This is what moves Google's index
+  across; without it the Google Sites URLs linger for weeks.
+- **Branch protection.** Settings → Branches → require a pull request for
+  `main`. Makes the review step in README.md a guarantee rather than a habit.
+- **Apex AAAA records**, per the DNS table above.
 
 ---
 
 ## Checklist
 
-- [x] `main` branch created and set as default
+- [x] `main` created and set as the default branch
 - [x] Pages enabled, source set to **GitHub Actions**
-- [ ] Custom domain box cleared so the preview URL works
-- [ ] Pages visibility confirmed **Public** (checked in an incognito window)
-- [ ] *Deploy preview* run; site reviewed at lynkrobotics.github.io/website/
-- [ ] Custom domain set to `lynkrobotics.org`
-- [ ] Squarespace apex `A` record and `www` CNAME removed
-- [ ] Domain forwarding rule turned off at the registrar
-- [ ] GitHub `A` + `AAAA` records added on the apex
-- [ ] `www` CNAME points to `lynkrobotics.github.io.`
-- [ ] *Deploy to GitHub Pages* re-run to replace the preview build
-- [ ] Enforce HTTPS ticked
-- [ ] Google Site trimmed to Home, links repointed
+- [x] Squarespace records removed, GitHub `A` records added on the apex
+- [x] `www` CNAME → `lynkrobotics.github.io.`
+- [x] Registrar domain forwarding turned off
+- [x] Custom domain set to `www.lynkrobotics.org`
+- [x] Enforce HTTPS ticked
+- [ ] Apex `AAAA` records added for IPv6
+- [ ] Google Site trimmed, links repointed
 - [ ] Sitemap submitted to Search Console
+- [ ] Branch protection on `main`

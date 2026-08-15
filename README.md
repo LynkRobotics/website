@@ -4,7 +4,7 @@ The website for **LYNK Robotics**, FIRST® Robotics Competition Team 9496,
 operating under Inspire Carolina, Inc.
 
 Static site built with [Eleventy](https://www.11ty.dev/), published to GitHub
-Pages at <https://lynkrobotics.org>.
+Pages at <https://www.lynkrobotics.org>.
 
 > **Setting this up for the first time?** Start with [SETUP.md](SETUP.md) —
 > the branch, GitHub Pages and DNS steps that have to happen once before
@@ -30,7 +30,7 @@ The point of this repository is that changes get **written by Claude**,
   merge the pull request into `main`
           │
           ▼
-  GitHub Actions builds and deploys  →  lynkrobotics.org  (about 1–2 minutes)
+  GitHub Actions builds and deploys  →  www.lynkrobotics.org  (1–2 min)
 ```
 
 Nothing reaches the public site until a human merges to `main`.
@@ -90,7 +90,7 @@ GitHub Pages** to put the live build back.
 
 Merge the pull request on GitHub. The **Deploy to GitHub Pages** workflow runs
 automatically; watch it under the repository's **Actions** tab. When it goes
-green, the change is live at lynkrobotics.org.
+green, the change is live at www.lynkrobotics.org.
 
 To roll back, revert the merge commit on `main` — the next deploy restores the
 previous state.
@@ -135,13 +135,30 @@ Requires Node.js 20 or newer.
 
 - **Source of truth:** the `main` branch of this repository.
 - **Build and deploy:** `.github/workflows/deploy.yml` on every push to `main`.
-- **Custom domain:** `src/CNAME` contains `lynkrobotics.org`. The build fails if
-  that file goes missing, since losing it would drop the custom domain.
-- **Both `lynkrobotics.org` and `www.lynkrobotics.org`** serve the site; GitHub
-  redirects `www` to the apex domain.
+- **Custom domain:** `src/CNAME` contains `www.lynkrobotics.org`, and that file
+  is what actually sets the custom domain on each deploy — it overrides the
+  Settings → Pages box. The build fails if it goes missing or disagrees.
+- **`www` is canonical.** `lynkrobotics.org` 301-redirects to
+  `www.lynkrobotics.org`. This direction is deliberate and should not be
+  reversed — see "Why www" below.
 
 Old Google Sites paths (`/lynk`, `/lynk/lynk-faqs`, `/our-people/mentors-lynk`,
 and so on) redirect to their new homes — see `src/_data/redirects.json`.
+
+### Why www
+
+Before the migration, Squarespace served `lynkrobotics.org` and answered with a
+**permanent** redirect to `www.lynkrobotics.org`. Browsers cache a 301 and stop
+asking the server, so every browser that visited the old domain still has that
+redirect saved.
+
+If GitHub sent `www` back to the apex — the arrangement this site launched with
+— those browsers would bounce between the two forever and show
+`ERR_TOO_MANY_REDIRECTS`. Serving the site at `www` means the stale redirect
+lands on a real page instead.
+
+Reversing this later would recreate the same loop, this time from GitHub's own
+cached apex → www redirect. Leave `www` canonical.
 
 ## Design
 

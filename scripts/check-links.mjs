@@ -74,8 +74,8 @@ for (const required of ["CNAME", "index.html", "404.html", "sitemap.xml"]) {
 const cname = path.join(SITE, "CNAME");
 if (existsSync(cname)) {
   const domain = (await readFile(cname, "utf8")).trim();
-  if (domain !== "lynkrobotics.org") {
-    problems.push(`CNAME is "${domain}", expected "lynkrobotics.org"`);
+  if (domain !== "www.lynkrobotics.org") {
+    problems.push(`CNAME is "${domain}", expected "www.lynkrobotics.org"`);
   }
 }
 

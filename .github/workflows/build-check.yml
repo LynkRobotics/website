@@ -1,7 +1,7 @@
 name: Build check
 
 # Runs on every pull request so a broken template is caught before it
-# reaches main (and therefore before it reaches lynkrobotics.org).
+# reaches main (and therefore before it reaches www.lynkrobotics.org).
 on:
   pull_request:
     branches: [main]
