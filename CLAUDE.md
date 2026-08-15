@@ -43,6 +43,8 @@ src/
   seasons/season.njk        generates /seasons/<year>/ for every entry in seasons.json
   redirect.njk              generates a stub for every entry in redirects.json
 scripts/check-links.mjs     fails the build on a broken internal link
+scripts/mark-preview.mjs    turns a build into a badged, noindexed preview
+scripts/review-shots.mjs    screenshots the site into a single review page
 .github/workflows/          deploy (on main) and build check (on PRs)
 ```
 
@@ -53,10 +55,34 @@ npm install       # once
 npm start         # local preview at http://localhost:8080 with live reload
 npm run build     # write the site to _site/
 npm run check     # build, then verify every internal link resolves
+npm run review    # build, screenshot every page, write review.html
 ```
 
 Always run `npm run check` before handing work back. It catches the most
 common breakage: a page renamed in one place but still linked from another.
+
+## Handing work back
+
+**The reviewer must never have to run anything.** Finish every change that
+finished this way:
+
+1. `npm run check` — the build passes and no internal link is broken.
+2. `npm run review -- review.html --pages=/faqs/,/our-people/` — screenshots
+   the pages the change touched, at desktop and phone width, into one
+   self-contained file. List only the affected pages; omit `--pages` to capture
+   the whole site.
+3. Publish `review.html` as an artifact and put the link in your reply.
+4. Push the branch and open a pull request. Cloudflare Pages comments a live,
+   clickable preview URL on the PR within a minute or so.
+
+So the reviewer gets two things without lifting a finger: screenshots in the
+reply for an immediate look, and a real browsable site on the PR.
+
+Keep `review.html` under about 14 MB or the artifact will not publish — that is
+roughly 12 pages. Use `--pages` and it will not come close.
+
+`npm run review` needs Playwright and a Chromium build; both are already
+present in Claude Code environments.
 
 ## House style
 
@@ -121,8 +147,9 @@ GIFs. They are far smaller than GIF and drop into an ordinary `<img>`.
 `.github/workflows/deploy.yml`, which builds and deploys to GitHub Pages,
 served at www.lynkrobotics.org.
 
-**Do all work on a branch and open a pull request.** A human previews locally
-with `npm start`, then merges. Never commit straight to `main` unless asked to.
+**Do all work on a branch and open a pull request.** A human reviews the
+screenshots and the Cloudflare preview, then merges. Never commit straight to
+`main` unless asked to.
 
 `src/CNAME` must keep containing `www.lynkrobotics.org` — the deploy fails
 loudly if it goes missing, because losing it would drop the custom domain, and

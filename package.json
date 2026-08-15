@@ -11,8 +11,8 @@
     "build": "eleventy",
     "check": "eleventy && node scripts/check-links.mjs",
     "clean": "rm -rf _site",
-    "build:preview": "PATH_PREFIX=/website/ eleventy",
-    "check:preview": "PATH_PREFIX=/website/ eleventy && PATH_PREFIX=/website/ node scripts/check-links.mjs"
+    "build:preview": "eleventy && node scripts/mark-preview.mjs",
+    "review": "node scripts/review-shots.mjs"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0"

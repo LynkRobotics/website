@@ -14,23 +14,25 @@ Pages at <https://www.lynkrobotics.org>.
 
 ## The everyday workflow
 
-The point of this repository is that changes get **written by Claude**,
-**reviewed by a human on their own machine**, and only then **published**.
+Ask for a change; review it; merge it. **Nothing to install, nothing to run.**
 
 ```
   ask Claude for a change
           │
           ▼
-  Claude commits to a branch and opens a pull request
+  Claude pushes a branch and opens a pull request
           │
-          ▼
-  you pull the branch and run `npm start`  ←─ review it in a real browser
+          ├──▶ Claude's reply links a page of screenshots,
+          │    every affected page at desktop and phone width
+          │
+          └──▶ Cloudflare comments a live preview URL on the PR,
+               the real site, clickable, ~1 minute later
           │
           ▼
   merge the pull request into `main`
           │
           ▼
-  GitHub Actions builds and deploys  →  www.lynkrobotics.org  (1–2 min)
+  GitHub Actions deploys  →  www.lynkrobotics.org  (1–2 min)
 ```
 
 Nothing reaches the public site until a human merges to `main`.
@@ -45,55 +47,39 @@ Point Claude at this repository and describe what you want, e.g.
 > Update the home page events: we qualified for States, and the Pembroke
 > event moved to the Jones Center gym.
 
-Claude will make the change on a branch and open a pull request.
-`CLAUDE.md` tells it where everything lives and what the house style is.
+`CLAUDE.md` tells Claude where everything lives, what the house style is, and
+that it owes you a review page with every change.
 
-### 2. Review it locally
+### 2. Review
 
-Once, to set up:
+Two ways, both handed to you:
+
+- **Screenshots**, linked in Claude's reply. Fastest look — every page the
+  change touched, desktop and phone, no waiting.
+- **A real preview site**, linked from a comment on the pull request. Cloudflare
+  Pages builds every branch automatically. Click through it, test the
+  navigation, try it on your phone. Preview builds carry a small **Preview**
+  badge and are blocked from search engines, so they can never be mistaken for
+  the live site.
+
+### 3. Publish
+
+Merge the pull request. The **Deploy to GitHub Pages** workflow runs
+automatically; when it goes green the change is live at www.lynkrobotics.org.
+
+To roll back, revert the merge commit on `main` — the next deploy restores the
+previous state.
+
+### If you do want to run it locally
+
+Never required, but it is the fastest loop if you are editing yourself:
 
 ```bash
 git clone https://github.com/LynkRobotics/website.git
 cd website
 npm install
+npm start          # http://localhost:8080, live reload
 ```
-
-Then for each review:
-
-```bash
-git fetch origin
-git checkout <branch-name>     # the PR page shows the branch name
-npm start
-```
-
-Open <http://localhost:8080>. The preview reloads as files change.
-Press `Ctrl-C` to stop.
-
-To check the whole site builds cleanly and no links are broken:
-
-```bash
-npm run check
-```
-
-### 3. Or review it on the web
-
-If you would rather not run anything locally, push the branch and run the
-**Deploy preview** workflow (Actions → *Deploy preview* → Run workflow). It
-publishes to <https://lynkrobotics.github.io/website/> without touching
-lynkrobotics.org.
-
-Note that the preview and the live site share one GitHub Pages slot: whichever
-workflow ran last is what Pages serves. After previewing, re-run **Deploy to
-GitHub Pages** to put the live build back.
-
-### 4. Publish
-
-Merge the pull request on GitHub. The **Deploy to GitHub Pages** workflow runs
-automatically; watch it under the repository's **Actions** tab. When it goes
-green, the change is live at www.lynkrobotics.org.
-
-To roll back, revert the merge commit on `main` — the next deploy restores the
-previous state.
 
 ---
 
@@ -127,14 +113,20 @@ in `src/_includes/`.
 | `npm run build` | Build the site into `_site/`                               |
 | `npm run check` | Build, then verify every internal link resolves            |
 | `npm run clean` | Delete `_site/`                                            |
-| `npm run check:preview` | Build and check the sub-path preview build         |
+| `npm run review` | Build, screenshot every page, write `review.html`         |
+| `npm run build:preview` | Build, then mark it as a preview (what Cloudflare runs) |
 
 Requires Node.js 20 or newer.
 
 ## Hosting
 
 - **Source of truth:** the `main` branch of this repository.
-- **Build and deploy:** `.github/workflows/deploy.yml` on every push to `main`.
+- **Production:** `.github/workflows/deploy.yml` builds and deploys to GitHub
+  Pages on every push to `main`.
+- **Previews:** Cloudflare Pages builds every other branch with
+  `npm run build:preview` and posts the URL on the pull request. It never
+  serves the custom domain — `mark-preview.mjs` strips `CNAME`, blocks
+  indexing and stamps a Preview badge on every page.
 - **Custom domain:** `src/CNAME` contains `www.lynkrobotics.org`, and that file
   is what actually sets the custom domain on each deploy — it overrides the
   Settings → Pages box. The build fails if it goes missing or disagrees.

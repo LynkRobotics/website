@@ -10,3 +10,6 @@ yarn-error.log*
 .DS_Store
 Thumbs.db
 .eleventy-cache/
+
+# Review output from `npm run review`
+review.html

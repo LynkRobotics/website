@@ -3,9 +3,9 @@
 How lynkrobotics.org got from the old Google Sites site to this repository, and
 what is left to do. Day-to-day publishing is in [README.md](README.md).
 
-**The site is live at <https://www.lynkrobotics.org>.** Everything below is
-either done or optional; the only outstanding item is tidying the Google Site
-(step 5).
+**The site is live at <https://www.lynkrobotics.org>.** Two things are
+outstanding: connecting Cloudflare Pages for automatic previews, and tidying
+the Google Site.
 
 ---
 
@@ -63,9 +63,61 @@ what lets GitHub answer on the apex in order to redirect it.
 cannot reach it. Not urgent — every other visitor is fine, and `www` already
 has IPv6 — but add them when convenient.
 
-## 5. Tidy up the Google Site
+## Connect Cloudflare Pages for previews
 
-The one outstanding task. Edit the Google Site at inspirecarolina.org so the two
+**This is the one setup step still outstanding.** It gives every branch an
+automatic, clickable preview URL so a change can be reviewed without running
+anything locally. Production is untouched — GitHub Pages keeps serving
+www.lynkrobotics.org exactly as it does now.
+
+About five minutes, free tier, no card required.
+
+1. Sign in at <https://dash.cloudflare.com> (create an account if needed).
+2. **Compute (Workers & Pages) → Create → Pages → Connect to Git.**
+3. Authorise Cloudflare for the **LynkRobotics** org and pick the **website**
+   repository. Granting access to just that one repo is fine.
+4. Set the build configuration:
+
+   | Field | Value |
+   | --- | --- |
+   | Project name | `lynk-website` (this becomes `lynk-website.pages.dev`) |
+   | Production branch | `main` |
+   | Framework preset | None |
+   | Build command | `npm run build:preview` |
+   | Build output directory | `_site` |
+
+   The Node version comes from the `.node-version` file in the repo, so there
+   is nothing to set for it.
+
+5. **Save and Deploy.**
+
+That is it. From then on Cloudflare builds every branch and every pull request
+and comments the preview URL on the PR.
+
+### Why the build command is `build:preview`, not `build`
+
+`npm run build:preview` runs the normal build and then `scripts/mark-preview.mjs`,
+which makes a Cloudflare deployment unmistakably *not* the live site:
+
+- deletes `CNAME`, so it can never claim www.lynkrobotics.org;
+- writes a disallow-all `robots.txt` and adds `noindex` to every page, so
+  `*.pages.dev` URLs stay out of Google;
+- stamps a small **Preview** badge, naming the branch, on every page.
+
+Cloudflare will also build `main` and publish it at `lynk-website.pages.dev`.
+That is harmless — it carries the same badge and noindex, and no DNS points at
+it. The live site remains GitHub Pages.
+
+### If you would rather not use Cloudflare
+
+Delete the project in the Cloudflare dashboard and nothing in this repository
+breaks; `build:preview` simply stops being called. You would be back to
+reviewing from the screenshots in Claude's replies, or locally with
+`npm start`.
+
+## Tidy up the Google Site
+
+The other outstanding task. Edit the Google Site at inspirecarolina.org so the two
 sites do not compete for the same search results.
 
 **Keep** the Home page and **Board Members - ICI** — the Inspire Carolina board
@@ -95,7 +147,7 @@ Then update what remains:
 - The body text link on "LYNK" → <https://www.lynkrobotics.org>
 - On **Our People**, the sentence about mentors → <https://www.lynkrobotics.org/our-people/mentors/>
 
-## 6. Optional, once things settle
+## Optional, once things settle
 
 - **Search Console.** Add `www.lynkrobotics.org` at
   <https://search.google.com/search-console> and submit
@@ -116,6 +168,7 @@ Then update what remains:
 - [x] Registrar domain forwarding turned off
 - [x] Custom domain set to `www.lynkrobotics.org`
 - [x] Enforce HTTPS ticked
+- [ ] Cloudflare Pages connected for automatic previews
 - [ ] Apex `AAAA` records added for IPv6
 - [ ] Google Site trimmed, links repointed
 - [ ] Sitemap submitted to Search Console
