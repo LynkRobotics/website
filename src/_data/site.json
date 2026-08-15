@@ -2,12 +2,13 @@
   "name": "LYNK Robotics",
   "shortName": "LYNK",
   "teamNumber": "9496",
-  "tagline": "FIRST® Robotics Competition Team 9496",
+  "tagline": "FIRST\u00ae Robotics Competition Team 9496",
   "url": "https://lynkrobotics.org",
   "description": "LYNK is a community-based high school FIRST Robotics Competition team (FRC 9496) serving Rutherford County, North Carolina and the surrounding region, operating under Inspire Carolina, Inc.",
   "parentOrg": {
     "name": "Inspire Carolina, Inc.",
-    "url": "https://www.inspirecarolina.org/"
+    "url": "https://www.inspirecarolina.org/",
+    "boardUrl": "https://www.inspirecarolina.org/our-people/board-members-ici"
   },
   "contact": {
     "email": "info@lynkrobotics.org",
@@ -16,9 +17,18 @@
     "ein": "93-2958472"
   },
   "social": [
-    { "name": "Instagram", "url": "https://www.instagram.com/lynkfrc/" },
-    { "name": "Facebook", "url": "https://www.facebook.com/lynkfrc" },
-    { "name": "YouTube", "url": "https://www.youtube.com/@LynkFRC" }
+    {
+      "name": "Instagram",
+      "url": "https://www.instagram.com/lynkfrc/"
+    },
+    {
+      "name": "Facebook",
+      "url": "https://www.facebook.com/lynkfrc"
+    },
+    {
+      "name": "YouTube",
+      "url": "https://www.youtube.com/@LynkFRC"
+    }
   ],
   "links": {
     "donate": "https://www.paypal.com/donate/?hosted_button_id=UKKVNVQXM7FKS",
@@ -29,26 +39,49 @@
     "blueAlliance": "https://www.thebluealliance.com/team/9496"
   },
   "nav": [
-    { "text": "Home", "url": "/" },
-    { "text": "Invest", "url": "/invest/" },
+    {
+      "text": "Home",
+      "url": "/"
+    },
+    {
+      "text": "Invest",
+      "url": "/invest/"
+    },
     {
       "text": "Our People",
       "url": "/our-people/",
       "children": [
-        { "text": "Board Members", "url": "/our-people/board/" },
-        { "text": "Mentors", "url": "/our-people/mentors/" }
+        {
+          "text": "Mentors",
+          "url": "/our-people/mentors/"
+        }
       ]
     },
-    { "text": "Experiences That Matter", "url": "/experiences/" },
+    {
+      "text": "Experiences That Matter",
+      "url": "/experiences/"
+    },
     {
       "text": "Seasons",
       "url": "/seasons/2025/",
       "children": [
-        { "text": "2025 Season", "url": "/seasons/2025/" },
-        { "text": "2024 Season (Rookie)", "url": "/seasons/2024/" }
+        {
+          "text": "2025 Season",
+          "url": "/seasons/2025/"
+        },
+        {
+          "text": "2024 Season (Rookie)",
+          "url": "/seasons/2024/"
+        }
       ]
     },
-    { "text": "FAQs", "url": "/faqs/" },
-    { "text": "Join Us", "url": "/registration/" }
+    {
+      "text": "FAQs",
+      "url": "/faqs/"
+    },
+    {
+      "text": "Join Us",
+      "url": "/registration/"
+    }
   ]
 }

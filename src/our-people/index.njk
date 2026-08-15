@@ -2,7 +2,7 @@
 layout: layouts/base.njk
 permalink: /our-people/
 title: Our People
-description: The board members and mentors who guide, support and inspire LYNK Robotics and Inspire Carolina, Inc.
+description: The mentors who guide, support and inspire LYNK Robotics, and the Inspire Carolina, Inc. board that governs the team.
 ---
 
 <section class="section section--center">
@@ -19,8 +19,16 @@ description: The board members and mentors who guide, support and inspire LYNK R
     </p>
 
     <div class="btn-row btn-row--stretch" style="margin-top: 2.5rem">
-      <a class="btn" href="/our-people/board/">Inspire Carolina Inc. Board</a>
       <a class="btn" href="/our-people/mentors/">LYNK Mentors</a>
+      <a class="btn btn--dark" href="{{ site.parentOrg.boardUrl }}" rel="noopener" target="_blank">
+        Inspire Carolina Inc. Board
+      </a>
     </div>
+
+    <p style="margin-top: 1.5rem; font-size: 0.9rem; color: rgba(28, 28, 28, 0.62)">
+      The Inspire Carolina board is listed on
+      <a href="{{ site.parentOrg.url }}" rel="noopener" target="_blank">{{ site.parentOrg.name }}</a>’s
+      own site.
+    </p>
   </div>
 </section>

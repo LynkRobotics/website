@@ -155,14 +155,18 @@ check, and **tick Enforce HTTPS**. GitHub redirects `www.lynkrobotics.org` to
 Once lynkrobotics.org is serving the new site, edit the Google Site at
 inspirecarolina.org so the two do not compete for the same search results.
 
-Keep only the **Home** page. Delete these, which now live on lynkrobotics.org:
+Keep the **Home** page and the **Board Members - ICI** page — the Inspire
+Carolina board stays on the Inspire Carolina site, and lynkrobotics.org links
+out to it. Delete these, which now live on lynkrobotics.org:
 
 | Google Sites page       | Now at                                |
 | ----------------------- | ------------------------------------- |
 | Invest                  | https://lynkrobotics.org/invest/       |
-| Our People              | https://lynkrobotics.org/our-people/   |
-| Our People → Board Members - ICI | https://lynkrobotics.org/our-people/board/ |
 | Our People → Mentors - LYNK | https://lynkrobotics.org/our-people/mentors/ |
+
+Leave **Our People** in place as the parent of Board Members - ICI. Its intro
+text mentions mentors, so it is worth pointing that sentence at
+<https://lynkrobotics.org/our-people/mentors/>.
 | Experiences That Matter | https://lynkrobotics.org/experiences/  |
 | LYNK                    | https://lynkrobotics.org/             |
 | LYNK → LYNK Registration | https://lynkrobotics.org/registration/ |

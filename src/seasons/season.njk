@@ -101,7 +101,7 @@ eleventyComputed:
                 {%- for a in ev.awards %}<li>{{ a }}</li>{% endfor %}
               </ul>
             {%- endif %}
-            <p>{{ ev.playoff }}</p>
+            {%- if ev.playoff %}<p>{{ ev.playoff }}</p>{% endif %}
           </div>
         {%- endfor %}
       </div>

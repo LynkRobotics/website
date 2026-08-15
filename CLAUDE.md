@@ -17,7 +17,6 @@ a sponsor, a competition or a season should never require touching HTML.
 | ------------------------- | ------------------------------------- |
 | Site name, nav, contact info, social links, PayPal/Chief Delphi/Drive URLs | `src/_data/site.json` |
 | Mentors (the Mentors page)| `src/_data/mentors.json`              |
-| Inspire Carolina board    | `src/_data/board.json`                |
 | The two co-lead contacts  | `src/_data/leads.json`                |
 | Sponsor logos and tiers   | `src/_data/sponsors.json`             |
 | Upcoming events on the home page | `src/_data/events.json`        |
@@ -111,7 +110,6 @@ before committing — nothing in the build pipeline resizes images.
 | Section photo      | 1400px    | JPEG q82 |
 | Gallery photo      | 1400px    | JPEG q82 |
 | Mentor headshot    | 500px     | JPEG q82 |
-| Board headshot     | 700px     | JPEG q82 |
 | Sponsor logo       | 540–700px | PNG if it needs transparency, else JPEG |
 
 Animated heroes are animated WebP (`hero/*.webp`), converted from the original
@@ -134,14 +132,24 @@ if it goes missing, because losing it would drop the custom domain.
 These were carried over verbatim during the migration rather than silently
 "fixed". Change them when the team confirms the right values:
 
-1. `seasons.json` → 2025 season: `robot.record` and `eventsRecord` both quote
-   the **2024** figures ("74-18-0 … in 2024"), while the season summary says the
-   2025 record was 88-14-2.
-2. `seasons.json` → 2025 season: three of the five events (UNC Asheville,
-   Mecklenburg County, NC District State Championship) link to **2024**
-   Blue Alliance pages and quote 2024 records. The 2025 banner artwork on that
-   page shows these were 2025 events, so the links and records are stale.
-3. The FAQ answer "What does an FRC season look like?" had hard-coded 2024
+1. The FAQ answer "What does an FRC season look like?" had hard-coded 2024
    championship dates; they were made generic during migration.
-4. The FAQ answer about attending an off-season event referenced a **2023**
+2. The FAQ answer about attending an off-season event referenced a **2023**
    THOR West date; it now points at the home page events list instead.
+3. The home page still describes LYNK as a "third year" team, which was true
+   for the 2026 season as written but will need bumping each year.
+
+Two issues logged here originally — the 2025 season page quoting 2024 match
+records, and three of its events linking to 2024 Blue Alliance pages — were
+fixed by replacing that data with the real 2025 figures from
+[The Blue Alliance](https://www.thebluealliance.com/team/9496/2025).
+
+## Where season results come from
+
+`seasons.json` is hand-maintained, but the numbers should match The Blue
+Alliance, which is the authoritative record:
+`https://www.thebluealliance.com/team/9496/<year>`. That page is
+server-rendered, so it can be read directly without an API key. Take the
+official/overall record from the "Event Results" line and each event's rank,
+record, awards and playoff outcome from its own block. Do not invent a
+playoff outcome TBA does not state — leave `playoff` empty instead.

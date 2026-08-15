@@ -6,22 +6,31 @@ pagination:
 permalink: "{{ redirect.from }}index.html"
 eleventyExcludeFromCollections: true
 ---
+{#
+  A stub page for every entry in src/_data/redirects.json.
+
+  `to` may be a path on this site ("/faqs/") or a full URL somewhere else
+  ("https://www.inspirecarolina.org/..."). Off-site targets skip the `url`
+  filter, which would otherwise prepend the path prefix in preview builds.
+#}
+{%- set offsite = "://" in redirect.to %}
+{%- set target = redirect.to if offsite else (redirect.to | url) %}
+{%- set canonical = redirect.to if offsite else (redirect.to | absoluteUrl(site.url)) %}
 <!doctype html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
     <title>Redirecting…</title>
-    <link rel="canonical" href="{{ redirect.to | absoluteUrl(site.url) }}" />
+    <link rel="canonical" href="{{ canonical }}" />
     <meta name="robots" content="noindex" />
-    <meta http-equiv="refresh" content="0; url={{ redirect.to | url }}" />
+    <meta http-equiv="refresh" content="0; url={{ target }}" />
     <script>
-      window.location.replace("{{ redirect.to | url }}" + window.location.hash);
+      window.location.replace("{{ target }}" + window.location.hash);
     </script>
   </head>
   <body>
     <p>
-      This page has moved to
-      <a href="{{ redirect.to }}">{{ site.url }}{{ redirect.to }}</a>.
+      This page has moved to <a href="{{ target }}">{{ canonical }}</a>.
     </p>
   </body>
 </html>

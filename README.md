@@ -105,7 +105,6 @@ Content is **data, not markup**. Most changes are a few lines of JSON.
 | ----------------------------- | ----------------------------------------------- |
 | `src/_data/site.json`         | Site name, navigation, contact details, social and donation links |
 | `src/_data/mentors.json`      | The Mentors page                                |
-| `src/_data/board.json`        | The Inspire Carolina board page                 |
 | `src/_data/leads.json`        | The two co-lead mentor contact cards            |
 | `src/_data/sponsors.json`     | The investor wall and its tiers                 |
 | `src/_data/events.json`       | Upcoming events on the home page                |
