@@ -1,0 +1,20 @@
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <p class="site-footer__brand">
+      <strong>{{ site.name }}</strong>
+      FIRST® Robotics Competition (FRC) Team {{ site.teamNumber }}
+    </p>
+
+    {% include "partials/social.njk" %}
+
+    <a class="btn btn--dark" href="mailto:{{ site.contact.email }}">Contact Us</a>
+
+    <p class="site-footer__legal">
+      {{ site.name }} operates under
+      <a href="{{ site.parentOrg.url }}">{{ site.parentOrg.name }}</a>, a
+      501(c)(3) non-profit organization (EIN {{ site.contact.ein }}). FIRST® is a
+      registered trademark of For Inspiration and Recognition of Science and
+      Technology (FIRST), which is not affiliated with this website.
+    </p>
+  </div>
+</footer>

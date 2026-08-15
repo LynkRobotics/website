@@ -1,0 +1,182 @@
+---
+layout: layouts/base.njk
+title: null
+description: LYNK is a community-based high school FIRST Robotics Competition team (FRC 9496) open to students in Rutherford County, North Carolina and the surrounding region.
+eleventyNavigation:
+  key: Home
+---
+
+<section class="hero hero--brand hero--tall">
+  <img
+    class="hero__media"
+    src="/assets/img/hero/lynk-animated.webp"
+    alt="LYNK 9496 logo"
+    width="1280"
+    height="720"
+    fetchpriority="high"
+  />
+  <a class="hero__scroll-cue" href="#about" aria-label="Scroll to content">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 16.5 4.5 9l1.4-1.4L12 13.7l6.1-6.1L19.5 9z" /></svg>
+  </a>
+</section>
+
+<section class="section section--dark section--center" id="about">
+  <div class="section__inner">
+    <h1>About Us</h1>
+    <p class="lede">
+      LYNK is a third year high school FIRST Robotic Competition (FRC) team,
+      operating under the umbrella of the Inspire Carolina non-profit
+      organization. We believe that FRC is a powerful program that can challenge
+      and grow the high school students in our region, and have a positive impact
+      on our community. We are a community-based team open to all high school
+      students in Rutherford county North Carolina and the surrounding region.
+      See below for more information and to register if you are interested in
+      <a href="/registration/">joining us</a>!
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section__inner">
+    <div class="split">
+      <div class="media-frame">
+        <img
+          src="/assets/img/home/team-champions.jpg"
+          alt="The LYNK 9496 team celebrating with a FIRST Robotics Competition winner banner"
+          width="1200"
+          height="800"
+          loading="lazy"
+        />
+      </div>
+      <div class="stack">
+        <p>
+          Our logo features a unique spelling of “link” as “LYNK,” which is
+          intentional. We spelled it with a Y to remind us <em>why</em> we do
+          what we do:
+        </p>
+        <img
+          src="/assets/img/home/why-quote.png"
+          alt="To inspire personal growth for students, so they can unleash their potential and create a ripple effect of positive change in the world."
+          width="1200"
+          height="425"
+          loading="lazy"
+        />
+      </div>
+    </div>
+
+    <div class="btn-row btn-row--stretch" style="margin-top: 2.5rem">
+      <a class="btn" href="{{ site.links.libraryOfKnowledge }}" rel="noopener" target="_blank">
+        LYNK Library of Knowledge
+      </a>
+      <a class="btn" href="{{ site.links.donate }}" rel="noopener" target="_blank">
+        Click Here to Invest in the Team
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--dark section--tight section--center">
+  <div class="section__inner" style="display: grid; justify-items: center; gap: 1rem">
+    <p style="margin: 0">Follow the team</p>
+    {% include "partials/social.njk" %}
+  </div>
+</section>
+
+<section class="section section--center">
+  <div class="section__inner">
+    <h1>Upcoming Events</h1>
+  </div>
+</section>
+
+<section class="section section--orange" style="padding-top: 0">
+  <div class="section__inner">
+    <div class="meeting-block">
+      <p class="meeting-block__when">{{ events.meetings.when }}</p>
+      <p>{{ events.meetings.what }}</p>
+      <p>{{ events.meetings.where }}</p>
+    </div>
+
+    <div class="events">
+      {%- for ev in events.competitions %}
+        {%- if ev.conditional and not loop.first and not events.competitions[loop.index0 - 1].conditional %}
+          <p class="events__note">{{ events.qualifierNote }}</p>
+        {%- endif %}
+        <div class="event">
+          <span class="event__date">{{ ev.start | dateRange(ev.end) }}</span>
+          <span class="event__kind">{{ ev.kind }}</span>
+          <span class="event__venue">
+            <a href="{{ ev.url }}" rel="noopener" target="_blank">{{ ev.venue }}</a>
+          </span>
+        </div>
+      {%- endfor %}
+    </div>
+
+    <div class="btn-row" style="margin-top: 2rem">
+      <a class="btn btn--dark" href="/faqs/">FAQs</a>
+      <a class="btn btn--dark" href="/registration/">Register Your Interest To Join The Team</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section__inner">
+    <div class="split split--top">
+      <div class="stack">
+        <h1>2026 Robot Name</h1>
+        <p>For the 2026 FIRST Robotics Competition season, we are naming our robot…</p>
+        <div class="media-frame">
+          <img
+            src="/assets/img/home/robot-2026-build.jpg"
+            alt="A mentor assembling the 2026 robot chassis in the LYNK workshop"
+            width="1400"
+            height="1373"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <div class="stack">
+        <img
+          src="/assets/img/home/rebuilt-logo.png"
+          alt="REBUILT presented by Haas — the 2026 FIRST Robotics Competition game"
+          width="900"
+          height="355"
+          loading="lazy"
+        />
+        <a class="btn btn--block" href="https://youtu.be/_fybREErgyM?si=ESVKe-B-unoUjGu9" rel="noopener" target="_blank">
+          2026 FRC | REBUILT
+        </a>
+        <p>
+          In REBUILT presented by Haas, two competing alliances are invited to
+          score fuel, cross obstacles, and climb the tower before time runs out.
+          Alliances earn additional rewards for meeting specific scoring
+          thresholds.
+        </p>
+
+        <img
+          src="/assets/img/home/build-log-banner.jpg"
+          alt="LYNK 9496 Build Log"
+          width="900"
+          height="338"
+          loading="lazy"
+        />
+        <p>
+          This thread is intended to serve as our Build Log. Rather than a
+          structured, real-time build thread, this log will capture updates as
+          time allows and as milestones are reached.
+        </p>
+        <p>
+          Entries may vary in depth and frequency, but the goal is to document key
+          decisions, progress, and lessons learned throughout the season when we
+          have meaningful updates to share.
+        </p>
+        <a class="btn btn--block" href="{{ site.links.buildLog }}" rel="noopener" target="_blank">
+          Click Here to Read Our Build Log
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% include "partials/sponsors.njk" %}
+{% include "partials/leads.njk" %}

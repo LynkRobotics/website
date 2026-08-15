@@ -1,0 +1,1109 @@
+@import "fonts.css";
+
+/* ==========================================================================
+   LYNK Robotics — design tokens
+   Colours and type are carried over from the original Google Sites theme:
+   burnt orange #BF5700, near-black #1C1C1C, Red Hat Display throughout.
+   ========================================================================== */
+
+:root {
+  --orange: #bf5700;
+  --orange-dark: #a04900;
+  --ink: #1c1c1c;
+  --paper: #ffffff;
+  --paper-alt: #f9f9f9;
+  --rule: rgba(28, 28, 28, 0.12);
+  --rule-light: rgba(249, 249, 249, 0.24);
+
+  --font: "Red Hat Display", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-fine: "Roboto", system-ui, -apple-system, sans-serif;
+
+  /* Type scale, converted from the original point sizes. */
+  --fs-display: clamp(2rem, 1.35rem + 2.7vw, 2.85rem); /* 34pt */
+  --fs-title: clamp(1.6rem, 1.2rem + 1.7vw, 2.1rem); /* 25–30pt */
+  --fs-h2: 1.5rem; /* 18pt */
+  --fs-h3: 1.175rem; /* 14pt */
+  --fs-body: 1rem; /* 12pt */
+  --fs-fine: 0.7rem; /* 8pt */
+
+  --wrap: 1280px;
+  --gutter: clamp(1rem, 0.4rem + 2.5vw, 3rem);
+  --section-y: clamp(2.5rem, 1.5rem + 3vw, 4rem);
+  --radius: 4px;
+}
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Offset in-page anchors so headings clear the sticky header. */
+  scroll-padding-top: 5.5rem;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font);
+  font-size: var(--fs-body);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 700;
+  color: var(--orange);
+  margin: 0 0 0.5em;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--fs-display);
+  line-height: 1.15;
+}
+h2 {
+  font-size: var(--fs-h2);
+}
+h3 {
+  font-size: var(--fs-h3);
+}
+
+p {
+  margin: 0 0 1rem;
+}
+p:last-child {
+  margin-bottom: 0;
+}
+
+ul,
+ol {
+  margin: 0 0 1rem;
+  padding-left: 1.25rem;
+}
+li {
+  margin-bottom: 0.35rem;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: 2rem 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Keyboard focus is always visible, on light and dark sections alike. */
+:focus-visible {
+  outline: 3px solid var(--orange);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+.section--dark :focus-visible,
+.section--orange :focus-visible,
+.site-header :focus-visible,
+.site-footer :focus-visible {
+  outline-color: #fff;
+}
+
+.skip-link {
+  position: absolute;
+  left: 0.5rem;
+  top: -3rem;
+  z-index: 100;
+  background: var(--paper);
+  color: var(--ink);
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius);
+  font-weight: 700;
+  transition: top 0.15s;
+}
+.skip-link:focus {
+  top: 0.5rem;
+}
+
+/* ==========================================================================
+   Header + navigation
+   ========================================================================== */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: var(--ink);
+  color: var(--paper-alt);
+}
+
+.site-header__inner {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0.6rem var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.site-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  text-decoration: none;
+  color: inherit;
+  font-weight: 700;
+  font-size: 1.05rem;
+  letter-spacing: 0.01em;
+  margin-right: auto;
+}
+
+.site-header__brand img {
+  height: 34px;
+  width: auto;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.nav a {
+  display: block;
+  padding: 0.5rem 0.7rem;
+  text-decoration: none;
+  color: var(--paper-alt);
+  font-size: 0.9rem;
+  border-radius: var(--radius);
+  white-space: nowrap;
+}
+
+.nav a:hover {
+  color: rgba(249, 249, 249, 0.82);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.nav a[aria-current="page"] {
+  color: var(--orange);
+  font-weight: 700;
+}
+
+/* Dropdowns: CSS-only on pointer devices, always-open in the mobile drawer. */
+.nav__item {
+  position: relative;
+}
+
+.nav__submenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 13rem;
+  background: var(--ink);
+  border: 1px solid var(--rule-light);
+  border-radius: var(--radius);
+  padding: 0.35rem;
+  margin: 0;
+  list-style: none;
+  display: none;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+}
+
+.nav__item:hover > .nav__submenu,
+.nav__item:focus-within > .nav__submenu {
+  display: block;
+}
+
+.nav__toggle {
+  display: none;
+  background: none;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  cursor: pointer;
+  padding: 0.5rem;
+  line-height: 1;
+}
+
+.nav__toggle svg {
+  width: 26px;
+  height: 26px;
+  fill: currentColor;
+}
+
+@media (max-width: 900px) {
+  .nav__toggle {
+    display: block;
+  }
+
+  .nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--ink);
+    padding: 0.5rem var(--gutter) 1rem;
+    border-top: 1px solid var(--rule-light);
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto;
+  }
+
+  .nav.is-open {
+    display: flex;
+  }
+
+  .nav a {
+    padding: 0.7rem 0.25rem;
+    font-size: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  }
+
+  .nav__submenu {
+    display: block;
+    position: static;
+    border: 0;
+    box-shadow: none;
+    padding: 0 0 0 1rem;
+    background: transparent;
+  }
+}
+
+/* ==========================================================================
+   Sections
+   ========================================================================== */
+
+.section {
+  padding: var(--section-y) 0;
+  background: var(--paper);
+}
+
+.section__inner {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+.section--tight {
+  padding: calc(var(--section-y) * 0.5) 0;
+}
+
+.section--alt {
+  background: var(--paper-alt);
+}
+
+.section--dark {
+  background: var(--ink);
+  color: var(--paper-alt);
+}
+
+.section--orange {
+  background: var(--orange);
+  color: var(--paper);
+}
+.section--orange h1,
+.section--orange h2,
+.section--orange h3 {
+  color: var(--paper);
+}
+.section--dark h1,
+.section--dark h2,
+.section--dark h3 {
+  color: var(--orange);
+}
+
+/* On the original site the investors banner is orange with black type. */
+.section--orange.section--ink-heading h1,
+.section--orange.section--ink-heading h2 {
+  color: var(--ink);
+}
+
+.section--center {
+  text-align: center;
+}
+.section--center .section__inner > p {
+  max-width: 62ch;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ==========================================================================
+   Hero
+   ========================================================================== */
+
+.hero {
+  position: relative;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  min-height: clamp(18rem, 45vw, 34rem);
+  padding: var(--section-y) var(--gutter);
+  background: var(--orange);
+  color: var(--paper);
+  overflow: hidden;
+}
+
+.hero--tall {
+  min-height: clamp(22rem, 58vw, 42rem);
+}
+
+.hero__media {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.hero__scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.38);
+  z-index: 1;
+}
+
+.hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: var(--wrap);
+}
+
+.hero__content h1 {
+  color: var(--paper);
+  margin-bottom: 0.25em;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.4);
+}
+
+.hero__content p {
+  font-size: 1.15rem;
+  text-shadow: 0 1px 12px rgba(0, 0, 0, 0.45);
+}
+
+/* The home hero shows the animated logo on flat orange — no scrim wanted. */
+.hero--brand {
+  background: var(--orange);
+}
+.hero--brand .hero__media {
+  object-fit: contain;
+}
+
+.hero__scroll-cue {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  color: rgba(255, 255, 255, 0.85);
+  animation: nudge 2.4s ease-in-out infinite;
+}
+.hero__scroll-cue svg {
+  width: 30px;
+  height: 30px;
+  fill: currentColor;
+}
+
+@keyframes nudge {
+  0%,
+  100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, 7px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .hero__scroll-cue {
+    animation: none;
+  }
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+
+.btn {
+  display: inline-block;
+  background: var(--orange);
+  color: var(--paper);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+  line-height: 1.3;
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--radius);
+  text-align: center;
+  transition:
+    background 0.15s ease,
+    transform 0.15s ease;
+}
+
+.btn:hover {
+  background: var(--orange-dark);
+  transform: translateY(-1px);
+}
+
+.btn--dark {
+  background: var(--ink);
+}
+.btn--dark:hover {
+  background: #000;
+}
+
+.btn--ghost {
+  background: transparent;
+  border: 2px solid currentColor;
+  color: inherit;
+}
+.btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.btn--block {
+  display: block;
+  width: 100%;
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+}
+
+.btn-row--stretch .btn {
+  flex: 1 1 18rem;
+}
+
+/* ==========================================================================
+   Layout helpers
+   ========================================================================== */
+
+.split {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  gap: clamp(1.5rem, 1rem + 2vw, 3rem);
+  align-items: center;
+}
+
+.split--top {
+  align-items: start;
+}
+
+.stack > * + * {
+  margin-top: 1rem;
+}
+
+.prose {
+  max-width: 70ch;
+}
+.prose--center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.lede {
+  font-size: 1.075rem;
+}
+
+.media-frame img {
+  width: 100%;
+  border-radius: var(--radius);
+}
+
+/* ==========================================================================
+   Cards: mentors, board, leads
+   ========================================================================== */
+
+.card-grid {
+  display: grid;
+  gap: clamp(1.25rem, 0.8rem + 1.6vw, 2.25rem);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+}
+
+.card-grid--wide {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 26rem), 1fr));
+}
+
+.person {
+  display: grid;
+  grid-template-columns: 8.5rem 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.person__photo {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.person__name {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin: 0;
+}
+
+.person__title,
+.person__role {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.person__role {
+  color: var(--orange);
+  font-weight: 700;
+}
+
+.person__why {
+  margin: 0.6rem 0 0;
+  font-size: 0.9rem;
+}
+
+.person__why b {
+  color: var(--orange);
+}
+
+.person__since {
+  margin: 0.5rem 0 0;
+  font-size: 0.8rem;
+  color: rgba(28, 28, 28, 0.62);
+}
+
+.section--dark .person__name {
+  color: var(--paper-alt);
+}
+.section--dark .person__since {
+  color: rgba(249, 249, 249, 0.62);
+}
+
+/* Board members are portrait cards rather than side-by-side rows. */
+/* Capped at three across so five members read as 3 + 2, the way they do
+   on the current site, rather than 4 + 1. */
+.board-grid {
+  display: grid;
+  gap: clamp(1.25rem, 0.8rem + 1.6vw, 2.25rem);
+  grid-template-columns: repeat(3, 1fr);
+  text-align: center;
+}
+
+@media (max-width: 780px) {
+  .board-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 460px) {
+  .board-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.board-card__photo {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius);
+  margin-bottom: 0.85rem;
+}
+
+.board-card__role {
+  font-size: var(--fs-h2);
+  color: var(--orange);
+  font-weight: 700;
+  margin: 0;
+}
+
+.board-card__name {
+  margin: 0.1rem 0 0;
+}
+
+/* Contact block used for the two co-lead mentors. */
+.lead-card {
+  display: grid;
+  grid-template-columns: 10.5rem 1fr;
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.lead-card__photo {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.lead-card__name {
+  font-size: var(--fs-h3);
+  margin: 0 0 0.15rem;
+  color: var(--orange);
+}
+
+.lead-card p {
+  margin: 0 0 0.2rem;
+  font-size: 0.9rem;
+}
+
+.lead-card a {
+  color: var(--orange);
+}
+
+.section--dark .lead-card a,
+.section--orange .lead-card a {
+  color: inherit;
+}
+
+@media (max-width: 480px) {
+  .person,
+  .lead-card {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+  .person__photo,
+  .lead-card__photo {
+    max-width: 11rem;
+  }
+}
+
+/* ==========================================================================
+   Events
+   ========================================================================== */
+
+.events {
+  display: grid;
+  gap: 0.25rem;
+}
+
+.event {
+  display: grid;
+  grid-template-columns: minmax(11rem, 1fr) minmax(10rem, 1fr) minmax(14rem, 2fr);
+  gap: 0.5rem 1.5rem;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--rule-light);
+  align-items: baseline;
+}
+
+.event:last-child {
+  border-bottom: 0;
+}
+
+.event__date {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.event__kind {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.event__venue {
+  font-size: 0.9rem;
+}
+
+.event__venue a {
+  color: inherit;
+}
+
+.events__note {
+  margin: 1.5rem 0 0.25rem;
+  font-size: 0.9rem;
+  font-style: italic;
+}
+
+.meeting-block {
+  padding-bottom: 1.25rem;
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid var(--rule-light);
+}
+
+.meeting-block__when {
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.meeting-block p {
+  margin: 0.15rem 0 0;
+  font-size: 0.9rem;
+}
+
+@media (max-width: 720px) {
+  .event {
+    grid-template-columns: 1fr;
+    gap: 0.15rem;
+  }
+}
+
+/* ==========================================================================
+   Sponsors
+   ========================================================================== */
+
+.sponsor-tier {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: clamp(1.5rem, 1rem + 3vw, 4rem);
+  margin-bottom: clamp(1.75rem, 1rem + 2.5vw, 3.25rem);
+}
+
+.sponsor {
+  display: grid;
+  place-items: center;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.sponsor img {
+  object-fit: contain;
+  width: auto;
+}
+
+/* Width is the real constraint; max-height is generous so that portrait
+   logos (Parton Lumber) keep the presence they have on the current site. */
+.sponsor-tier--xl img {
+  max-height: 11rem;
+  max-width: min(24rem, 80vw);
+}
+.sponsor-tier--lg img {
+  max-height: 10rem;
+  max-width: min(19rem, 70vw);
+}
+.sponsor-tier--md img {
+  max-height: 13rem;
+  max-width: min(13rem, 42vw);
+}
+
+.sponsor__name {
+  font-size: 0.85rem;
+  margin: 0;
+}
+
+.sponsor__name--only {
+  font-size: clamp(1.1rem, 0.9rem + 0.8vw, 1.55rem);
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+/* ==========================================================================
+   FAQ
+   ========================================================================== */
+
+.faq-index {
+  display: grid;
+  gap: 0.6rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  margin-bottom: 1rem;
+}
+
+.faq-index a {
+  display: block;
+  padding: 0.8rem 1rem;
+  background: var(--paper-alt);
+  border-left: 4px solid var(--orange);
+  border-radius: var(--radius);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.faq-index a:hover {
+  background: #f1eae4;
+}
+
+.faq {
+  border-top: 1px solid var(--rule);
+  padding-top: 2rem;
+  margin-top: 2rem;
+}
+
+.faq:first-of-type {
+  border-top: 0;
+  margin-top: 0;
+}
+
+/* The header clearance comes from `scroll-padding-top` on <html>; adding
+   scroll-margin here as well would double the offset. */
+
+/* ==========================================================================
+   Video + form embeds
+   ========================================================================== */
+
+.embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--ink);
+  border-radius: var(--radius);
+  overflow: hidden;
+  margin: 1.25rem 0;
+}
+
+.embed iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+/* Click-to-load YouTube: no third-party requests until the visitor asks. */
+.embed--video {
+  cursor: pointer;
+  border: 0;
+  padding: 0;
+  display: block;
+}
+
+.embed--video img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.embed--video::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 68px;
+  height: 48px;
+  transform: translate(-50%, -50%);
+  background: rgba(191, 87, 0, 0.92);
+  border-radius: 12px;
+  z-index: 2;
+  transition: background 0.15s;
+}
+
+.embed--video::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-40%, -50%);
+  border-style: solid;
+  border-width: 11px 0 11px 18px;
+  border-color: transparent transparent transparent #fff;
+  z-index: 3;
+}
+
+.embed--video:hover::after {
+  background: var(--orange-dark);
+}
+
+.form-embed {
+  width: 100%;
+  min-height: 1200px;
+  border: 0;
+  background: var(--paper);
+}
+
+/* ==========================================================================
+   Season gallery
+   ========================================================================== */
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
+  gap: 0.75rem;
+}
+
+.gallery img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.roster {
+  columns: 3 16rem;
+  column-gap: 2rem;
+  list-style: none;
+  padding: 0;
+}
+
+.roster li {
+  break-inside: avoid;
+  padding: 0.3rem 0;
+  border-bottom: 1px solid var(--rule);
+  font-size: 0.9rem;
+}
+
+.section--dark .roster li {
+  border-color: var(--rule-light);
+}
+
+.spec-list {
+  list-style: none;
+  padding: 0;
+}
+
+.spec-list li {
+  padding-left: 1.3rem;
+  position: relative;
+}
+
+.spec-list li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--orange);
+}
+
+.record {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.event-result {
+  margin-bottom: 1.75rem;
+}
+
+.event-result h3 {
+  margin-bottom: 0.25rem;
+}
+
+.event-result h3 a {
+  color: inherit;
+}
+
+.award-list {
+  margin: 0.4rem 0 0.5rem;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+
+.site-footer {
+  background: var(--orange);
+  color: var(--paper);
+  padding: 2rem 0;
+}
+
+.site-footer__inner {
+  max-width: var(--wrap);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.25rem;
+  justify-content: space-between;
+}
+
+.site-footer__brand {
+  font-family: var(--font-fine);
+  font-size: var(--fs-fine);
+  line-height: 1.6;
+  margin: 0;
+}
+
+.site-footer__brand strong {
+  font-family: var(--font);
+  font-size: 0.95rem;
+  display: block;
+  margin-bottom: 0.15rem;
+}
+
+.social {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.social a {
+  display: grid;
+  place-items: center;
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.16);
+  color: var(--paper);
+  transition: background 0.15s;
+}
+
+.social a:hover {
+  background: rgba(255, 255, 255, 0.32);
+}
+
+.social svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.site-footer__legal {
+  width: 100%;
+  font-family: var(--font-fine);
+  font-size: var(--fs-fine);
+  border-top: 1px solid rgba(255, 255, 255, 0.25);
+  padding-top: 1rem;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.site-footer__legal a {
+  color: inherit;
+}
+
+/* ==========================================================================
+   Print
+   ========================================================================== */
+
+@media print {
+  .site-header,
+  .site-footer,
+  .hero__scroll-cue,
+  .btn {
+    display: none !important;
+  }
+  body {
+    color: #000;
+  }
+}

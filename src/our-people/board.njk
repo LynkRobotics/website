@@ -1,0 +1,33 @@
+---
+layout: layouts/base.njk
+permalink: /our-people/board/
+title: Board Members
+description: The board of Inspire Carolina, Inc., the 501(c)(3) non-profit that governs LYNK Robotics.
+---
+
+<section class="section section--center">
+  <div class="section__inner">
+    <h1>Board Members — Inspire Carolina Inc.</h1>
+  </div>
+</section>
+
+<section class="section" style="padding-top: 0">
+  <div class="section__inner">
+    <div class="board-grid">
+      {%- for member in board %}
+        <div class="board-card">
+          <img
+            class="board-card__photo"
+            src="{{ member.photo }}"
+            alt="{{ member.name }}"
+            width="700"
+            height="700"
+            loading="lazy"
+          />
+          <p class="board-card__role">{{ member.role }}</p>
+          <p class="board-card__name">{{ member.name }}</p>
+        </div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>

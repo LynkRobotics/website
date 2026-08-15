@@ -1,0 +1,53 @@
+{
+  "_comment": "Upcoming events shown on the home page. 'meetings' is the standing rehearsal block; 'competitions' are formatted from ISO dates. Set qualifierNote on the first event that is conditional on qualifying.",
+  "meetings": {
+    "when": "Mon, Tues, Thurs, & Fri | 6:30-9 PM + Sat | 11:30 AM",
+    "what": "Season Team Meetings",
+    "where": "9496 LYNK Robotics HQ, 228 Callahan Koon Rd, Spindale, NC"
+  },
+  "qualifierNote": "Additional competition dates we'll attend, if we're able to qualify:",
+  "competitions": [
+    {
+      "start": "2026-03-05",
+      "end": "2026-03-07",
+      "kind": "Inter-District Competition",
+      "venue": "The City of North Charleston Athletic Center | North Charleston, SC",
+      "url": "https://frc-events.firstinspires.org/2026/SCCHA",
+      "city": "North Charleston, SC"
+    },
+    {
+      "start": "2026-03-20",
+      "end": "2026-03-22",
+      "kind": "District Competition",
+      "venue": "Heritage High School | Wake Forest, NC",
+      "url": "https://frc-events.firstinspires.org/2026/NCWK2",
+      "city": "Wake Forest, NC"
+    },
+    {
+      "start": "2026-03-27",
+      "end": "2026-03-29",
+      "kind": "District Competition",
+      "venue": "Jones Center @ UNC Pembroke | Pembroke, NC",
+      "url": "https://frc-events.firstinspires.org/2026/NCPEM",
+      "city": "Pembroke, NC"
+    },
+    {
+      "start": "2026-04-09",
+      "end": "2026-04-12",
+      "kind": "State Competition",
+      "venue": "Greensboro Special Events Center | Greensboro, NC",
+      "url": "https://frc-events.firstinspires.org/2026/NCCMP",
+      "conditional": true,
+      "city": "Greensboro, NC"
+    },
+    {
+      "start": "2026-04-29",
+      "end": "2026-05-02",
+      "kind": "Worlds Competition",
+      "venue": "George R. Brown Convention Center | Houston, TX",
+      "url": "https://www.firstinspires.org/programs/first-championship",
+      "conditional": true,
+      "city": "Houston, TX"
+    }
+  ]
+}

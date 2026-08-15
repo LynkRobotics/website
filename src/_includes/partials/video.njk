@@ -1,0 +1,22 @@
+{#
+  Click-to-load YouTube player.
+  Usage: {% set vid = { id: "abc123", thumb: "/assets/img/video/x.jpg", title: "..." } %}
+         {% include "partials/video.njk" %}
+  Falls back to a plain link to YouTube when JavaScript is unavailable.
+#}
+<button
+  class="embed embed--video"
+  type="button"
+  data-youtube="{{ vid.id }}"
+  data-title="{{ vid.title }}"
+  aria-label="Play video: {{ vid.title }}"
+>
+  <img src="{{ vid.thumb }}" alt="" loading="lazy" width="1280" height="720" />
+</button>
+<noscript>
+  <p>
+    <a href="https://www.youtube.com/watch?v={{ vid.id }}" rel="noopener" target="_blank">
+      Watch “{{ vid.title }}” on YouTube
+    </a>
+  </p>
+</noscript>

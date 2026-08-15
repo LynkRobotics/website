@@ -1,0 +1,221 @@
+[
+  {
+    "year": "2025",
+    "name": "2025 Season",
+    "robotName": "Chimney Rock \"ROCKY\"",
+    "game": "REEFSCAPE",
+    "gameLogo": "/assets/img/seasons/2025/reefscape-logo.png",
+    "gameVideo": "https://youtu.be/YWbxcjlY9JY?feature=shared",
+    "gameSummary": "In REEFSCAPE presented by Haas, two competing alliances are invited to score coral, harvest algae, and attach to the barge before time runs out. Alliances earn additional rewards for meeting specific scoring thresholds and for cooperating with their opponents.",
+    "heroImage": "/assets/img/hero/season-2025.jpg",
+    "robotImage": "/assets/img/hero/season-2025-robot.jpg",
+    "bannersImage": "/assets/img/seasons/2025/banners.png",
+    "robotNameNote": "For the 2025 FIRST Robotics Competition season, we are naming our robot \"Chimney Rock\"—nicknamed \"Rocky\"—in honor of the resilience shown by our mountain communities in the wake of Hurricane Helene, which brought devastating impacts to Western North Carolina.",
+    "buildLog": {
+      "url": "https://www.chiefdelphi.com/t/frc-9496-lynk-2025-build-log/481015",
+      "note": "This thread is titled as a “Build Log” and not “Build Thread” or “Open Alliance.” OA is hard, we are a small team, and OA takes a lot of man power to write, manpower that we do not have. Instead, this year we are doing what we call a “Build Log” where we will write things when we have time, and as we have things to write about.",
+      "label": "Build Log | Chief Delphi"
+    },
+    "tba": "https://www.thebluealliance.com/team/9496/2025",
+    "summary": "In 2025, our team achieved an impressive overall record of 88-14-2, winning multiple events, including district championships, and earning prestigious awards such as Innovation in Control and Excellence in Engineering Award. We consistently ranked among the top teams at our events, served as alliance captains or first picks in playoffs, and advanced to the FIRST Championship and were invited Chezy Champs.",
+    "gallery": { "dir": "/assets/img/seasons/2025/gallery", "count": 8 },
+    "robot": {
+      "specs": "Weight: 110 lbs. | Size: 27\" x 30\" x 41\" | Top Speed: 18.19 ft/sec.",
+      "record": "Match Record (W-L-T): 74-18-0 in official play and 102-32-0 overall in 2024.",
+      "capabilities": [
+        "Automated Scoring of All Levels for Coral",
+        "Dual-Purpose Endeffector",
+        "Internally Routed Belted, Continuous Elevator",
+        "Gearing: 5:1 | 36 Tooth",
+        "LED States to Alert Driver — Warnings + Errors, Coral Levels, Algae, Secure Climb",
+        "Automated De-Algification",
+        "Able to score in the Barge",
+        "Able to score in the processor",
+        "Able to do deep climb",
+        "Wide Coral Funnel",
+        "2DOF",
+        "Swerve Drive Train",
+        "One Vision Camera",
+        "3.5 Piece L4 Autonomous",
+        "Vision and Odometry Based Pose Estimation"
+      ]
+    },
+    "eventsRecord": "Match Record (W-L-T) | 74-18-0 in official play and 102-32-0 overall in 2024",
+    "events": [
+      {
+        "name": "PCH District Gainesville Event",
+        "url": "https://www.thebluealliance.com/event/2025gagai",
+        "result": "Rank 1 with a record of 17-0-0 and won the following awards:",
+        "awards": ["District Event Winner", "Innovation in Control Award sponsored by nVent"],
+        "playoff": "They competed in the playoffs as the Captain of Alliance 1 and won the event."
+      },
+      {
+        "name": "FNC District UNC Asheville Event",
+        "url": "https://www.thebluealliance.com/team/9496/2024",
+        "result": "Rank 1 with a record of 17-0-0 and won the following awards:",
+        "awards": ["District Event Winner", "Innovation in Control Award sponsored by nVent"],
+        "playoff": "They competed in the playoffs as the Captain of Alliance 1 and won the event."
+      },
+      {
+        "name": "FNC District Mecklenburg County Event",
+        "url": "https://www.thebluealliance.com/event/2024ncmec",
+        "result": "Rank 1 with a record of 16-0-1 and won the following awards:",
+        "awards": ["District Event Winner"],
+        "playoff": "They competed in the playoffs as the Captain of Alliance 1 and won the event."
+      },
+      {
+        "name": "FIRST North Carolina District State Championship",
+        "url": "https://www.thebluealliance.com/event/2024nccmp",
+        "result": "Rank 1 with a record of 14-2-1 and won the following awards:",
+        "awards": ["District Event Winner", "Excellence in Engineering Award"],
+        "playoff": "They competed in the playoffs as the Captain of Alliance 1 and won the event."
+      },
+      {
+        "name": "Hopper Division",
+        "url": "https://www.thebluealliance.com/event/2025hop",
+        "result": "Rank 23 with a record of 8-5-0",
+        "awards": [],
+        "playoff": "We competed in the playoffs as the 1st Pick of Alliance 6 and were eliminated in the Double Elimination Bracket (Round 3)"
+      }
+    ],
+    "rosterHeading": "Member Roster",
+    "roster": [
+      "Allie K - Branding + Media",
+      "Amelia K - Branding, Scouting + Strategy",
+      "Andrew J - Fabrication, Strategy, + Technician",
+      "Anna K - Fabrication + Pit Crew",
+      "Corbin B - Design, Fabrication, + Pit Crew",
+      "Dylan C - Fabrication",
+      "Elijah M - Programming + Scouting",
+      "Javier F - Branding, Media, + Scouting",
+      "Jimmy McC - Programming + Student Drive Coach",
+      "John Q - Fabrication, Scouting, Strategy",
+      "Joshua K - Design, Fabrication, + Scouting",
+      "Max McK - Fabrication",
+      "Michaela A - Awards, Branding, + Media",
+      "Nate B - Fabrication + Driver",
+      "Nathan F - Fabrication + Electrical",
+      "Sam C - Fabrication + Human Player",
+      "Sydney B - Strategy",
+      "Taylor B - Awards, Branding, + Media",
+      "Tristan T - Fabrication"
+    ],
+    "sponsorsHeading": "MAKING WAVES WITH OUR INVESTORS",
+    "divider": "/assets/img/seasons/2025/wave-divider.png"
+  },
+  {
+    "year": "2024",
+    "name": "2024 Season | Rookie Year",
+    "robotName": "Appalachian \"LATCH\"",
+    "game": "CRESCENDO",
+    "gameLogo": "/assets/img/seasons/2024/crescendo-logo.png",
+    "gameVideo": "https://youtu.be/9keeDyFxzY4?feature=shared",
+    "gameSummary": "In CRESCENDO presented by Haas, two competing alliances are invited to score notes, amplify their speaker, harmonize onstage, and take the spotlight before time runs out. Alliances earn additional rewards for meeting specific scoring thresholds and for cooperating with their opponents.",
+    "heroImage": "/assets/img/hero/season-2024.jpg",
+    "robotImage": "/assets/img/hero/season-2024-robot.jpg",
+    "bannersImage": "/assets/img/seasons/2024/banners.jpg",
+    "robotNameNote": "",
+    "buildLog": {
+      "url": "https://www.chiefdelphi.com/t/frc-9496-lynk-2024-build-thread-open-alliance",
+      "note": "",
+      "label": "Open Alliance Build Thread | CD"
+    },
+    "tba": "https://www.thebluealliance.com/team/9496/2024",
+    "summary": "In 2024, our team achieved an impressive overall record of 102-32-0, winning multiple events, including district championships, and earning prestigious awards such as Rookie All Star and Autonomous Award. We consistently ranked among the top teams at our events, served as alliance captains or first picks in playoffs, and advanced to the FIRST Championship and were invited Chezy Champs, where we received notable recognition for our performance.",
+    "gallery": { "dir": "/assets/img/seasons/2024/gallery", "count": 25 },
+    "robot": {
+      "specs": "Weight: 104 lbs. | Size: 27\" x 27\" x 28\" | Top Speed: 18.19 ft/sec.",
+      "record": "Match Record (W-L-T): 74-18-0 in official play and 102-32-0 overall in 2024.",
+      "capabilities": [
+        "Variable 0DOF shooter speed for shooting from varied distances from subwoofer to 10' away into the Speaker",
+        "Automatic Amp alignment",
+        "Between the bumper Note Intake",
+        "Swerve chassis, one camera",
+        "Multi-piece configurable autos",
+        "Double sided, double latch climber",
+        "Automatic alignment for shuttling/launching pieces across the field",
+        "Vision and odometry based pose estimation"
+      ]
+    },
+    "eventsRecord": "Match Record (W-L-T) | 74-18-0 in official play and 102-32-0 overall in 2024",
+    "events": [
+      {
+        "name": "CHS District Blacksburg VA Event",
+        "url": "https://www.thebluealliance.com/event/2024vabla",
+        "result": "Rank 1 with a record of 19-3-0 and won the following awards:",
+        "awards": ["District Event Winner", "Rookie Inspiration Award"],
+        "playoff": "We competed in the playoffs as the Captain of Alliance 1 and won the event."
+      },
+      {
+        "name": "FNC District UNC Asheville Event",
+        "url": "https://www.thebluealliance.com/team/9496/2024",
+        "result": "Rank 5 with a record of 13-6-0 and won the following awards:",
+        "awards": ["Rookie All Star Award", "District Event Winner"],
+        "playoff": "We competed in the playoffs as the 1st Pick of Alliance 2 and won the event."
+      },
+      {
+        "name": "FNC District Mecklenburg County Event",
+        "url": "https://www.thebluealliance.com/event/2024ncmec",
+        "result": "Rank 1 with a record of 18-2-0 and won the following awards:",
+        "awards": [
+          "District Championship Dean's List Semi-Finalist (Jimmy M)",
+          "District Event Winner",
+          "Autonomous Award"
+        ],
+        "playoff": "We competed in the playoffs as the Captain of Alliance 1 and won the event."
+      },
+      {
+        "name": "FIRST North Carolina District State Championship",
+        "url": "https://www.thebluealliance.com/event/2024nccmp",
+        "result": "Rank 1 with a record of 15-2-0 and won the following awards:",
+        "awards": ["District Championship Rookie All Star Award", "District Championship Winner"],
+        "playoff": "We competed in the playoffs as the Captain of Alliance 1 and won the event."
+      },
+      {
+        "name": "FIRST® Championship | Archimedes Division",
+        "url": "https://www.thebluealliance.com/event/2024arc",
+        "result": "Rank 23 with a record of 9-5-0",
+        "awards": [],
+        "playoff": "We competed in the playoffs as the 1st Pick of Alliance 8 and were eliminated in the Double Elimination Bracket (Round 4)"
+      },
+      {
+        "name": "THOR West",
+        "url": "https://www.thebluealliance.com/event/2024ncth2",
+        "result": "Rank 1 with a record of 13-2-0 and won the following awards:",
+        "awards": ["Event Winner"],
+        "playoff": "We competed in the playoffs as the Captain of Alliance 1 and won the event."
+      },
+      {
+        "name": "Chezy Champs",
+        "url": "https://www.thebluealliance.com/event/2024cc",
+        "result": "Rank 23 with a record of 7-8-0 and won the following awards:",
+        "awards": ["Judges' Award"],
+        "playoff": "We competed in the playoffs as the 2nd pick of Alliance 8 and were eliminated in the semifinals"
+      },
+      {
+        "name": "SCRIW XIII",
+        "url": "https://www.thebluealliance.com/event/2024sccol",
+        "result": "Team 9496 was Rank 7 with a record of 8-4-0 and won the following awards:",
+        "awards": ["Event Winner"],
+        "playoff": "We competed in the playoffs as the 1st Pick of Alliance 1 and won the event."
+      }
+    ],
+    "rosterHeading": "Member Roster",
+    "roster": [
+      "Addison M - Awards, Branding, + Media",
+      "Andrew J. - Fabrication + Human Player",
+      "Anna K - Fabrication, Electrical, + Pit Crew",
+      "Elijah M - Programming + Scouting",
+      "Jimmy Mc - Programming + Student Drive Coach",
+      "Joshua K - Fabrication + Technician",
+      "Michaela A - Awards, Branding, + Media",
+      "Nate B - Fabrication + Driver",
+      "Nathan F - Fabrication + Electrical",
+      "Presley K - Scouting + Strategy",
+      "Sydney B - Strategy",
+      "Taylor B - Branding, Awards, + Media"
+    ],
+    "sponsorsHeading": null,
+    "divider": null
+  }
+]

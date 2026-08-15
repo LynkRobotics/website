@@ -1,0 +1,88 @@
+{
+  "_comment": "Investors are grouped into tiers, largest logos first. Each tier renders as one row that wraps on narrow screens. A sponsor with no logo renders as a name in text, matching how they appear today.",
+  "tiers": [
+    {
+      "name": "Peak",
+      "size": "xl",
+      "items": [
+        {
+          "name": "Fountain Electric & Services",
+          "logo": "/assets/img/sponsors/fountain-electric.png"
+        },
+        { "name": "Meta", "logo": "/assets/img/sponsors/meta.png" }
+      ]
+    },
+    {
+      "name": "Overlook",
+      "size": "lg",
+      "items": [
+        { "name": "Inspire Carolina", "logo": null },
+        {
+          "name": "Century Fire Protection",
+          "logo": "/assets/img/sponsors/century-fire-protection.png"
+        }
+      ]
+    },
+    {
+      "name": "Trailhead",
+      "size": "md",
+      "items": [
+        {
+          "name": "Main Street Family Medicine",
+          "logo": "/assets/img/sponsors/main-street-family-medicine.jpg"
+        },
+        {
+          "name": "Parton Lumber",
+          "logo": "/assets/img/sponsors/parton-lumber.png"
+        },
+        {
+          "name": "Chick-fil-A Forest City",
+          "logo": "/assets/img/sponsors/chick-fil-a-forest-city.jpg"
+        },
+        {
+          "name": "Thomas Jefferson Classical Academy",
+          "logo": "/assets/img/sponsors/thomas-jefferson-classical-academy.png",
+          "showName": true
+        }
+      ]
+    },
+    {
+      "name": "Gorge",
+      "size": "md",
+      "items": [
+        {
+          "name": "Dell Technologies",
+          "logo": "/assets/img/sponsors/dell-technologies.png"
+        },
+        {
+          "name": "Duke Energy",
+          "logo": "/assets/img/sponsors/duke-energy.png"
+        },
+        {
+          "name": "Bank of America",
+          "logo": "/assets/img/sponsors/bank-of-america.png"
+        },
+        { "name": "Leidos", "logo": "/assets/img/sponsors/leidos.png" }
+      ]
+    },
+    {
+      "name": "Supporters",
+      "size": "md",
+      "items": [
+        {
+          "name": "Carolina Chiropractic Plus",
+          "logo": "/assets/img/sponsors/carolina-chiropractic-plus.png"
+        },
+        {
+          "name": "Gene Haas Foundation",
+          "logo": "/assets/img/sponsors/gene-haas-foundation.png"
+        },
+        {
+          "name": "Weichert, Realtors - Unlimited",
+          "logo": "/assets/img/sponsors/weichert-realtors.png"
+        },
+        { "name": "Moore Family", "logo": null }
+      ]
+    }
+  ]
+}

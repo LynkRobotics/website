@@ -1,0 +1,47 @@
+---
+layout: layouts/base.njk
+permalink: /faqs/
+title: FAQs
+description: Common questions about FIRST, the FIRST Robotics Competition, LYNK Robotics and how students and adults can get involved.
+---
+
+<section class="section section--center">
+  <div class="section__inner">
+    <h1>LYNK FAQs</h1>
+  </div>
+</section>
+
+<section class="section section--alt section--tight">
+  <div class="section__inner">
+    <nav class="faq-index" aria-label="Questions on this page">
+      {%- for faq in faqs %}
+        <a href="#{{ faq.slug }}">{{ faq.q }}</a>
+      {%- endfor %}
+    </nav>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section__inner">
+    {%- for faq in faqs %}
+      <article class="faq">
+        <h2 id="{{ faq.slug }}">{{ faq.q }}</h2>
+        <div class="prose">{{ faq.body | safe }}</div>
+        {%- if faq.video %}
+          {% set vid = faq.video %}
+          {% include "partials/video.njk" %}
+        {%- endif %}
+      </article>
+    {%- endfor %}
+  </div>
+</section>
+
+<section class="section section--dark section--center section--tight">
+  <div class="section__inner">
+    <h2>Still have a question?</h2>
+    <div class="btn-row" style="margin-top: 1.25rem">
+      <a class="btn" href="mailto:{{ site.contact.email }}">Contact Us</a>
+      <a class="btn btn--ghost" href="/registration/">Register Your Interest</a>
+    </div>
+  </div>
+</section>

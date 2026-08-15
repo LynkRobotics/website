@@ -1,0 +1,63 @@
+---
+layout: layouts/base.njk
+permalink: /experiences/
+title: Experiences That Matter
+description: Real, hands-on experiences that build leadership, teamwork and innovation — in the words of LYNK students, parents and mentors.
+socialImage: /assets/img/experiences/story-1.jpg
+---
+
+<section class="hero">
+  <img class="hero__media" src="/assets/img/hero/experiences.webp" alt="" width="1280" height="855" fetchpriority="high" />
+  <div class="hero__scrim"></div>
+  <div class="hero__content">
+    <h1>Experiences That Matter</h1>
+  </div>
+</section>
+
+<section class="section section--center">
+  <div class="section__inner">
+    <p class="lede prose prose--center">
+      At Inspire Carolina Inc. and LYNK Robotics, we believe the most powerful
+      growth happens through real, hands-on experiences. Our students take on
+      meaningful challenges—designing and building competitive robots, solving
+      complex problems together, and engaging with the wider community. These
+      moments spark inspiration while also building practical skills in
+      leadership, teamwork, and innovation. The result is more than just a season
+      of robotics—it’s an experience that prepares young people to thrive and make
+      a lasting impact wherever life takes them.
+    </p>
+  </div>
+</section>
+
+{%- for story in experiences %}
+  <section class="section{% if loop.index is odd %} section--alt{% endif %}">
+    <div class="section__inner">
+      <div class="split">
+        {%- if loop.index is odd %}
+          <div class="media-frame">
+            <img src="{{ story.image }}" alt="" width="1000" height="700" loading="lazy" />
+          </div>
+        {%- endif %}
+
+        <div class="stack">
+          <h2>{{ story.title }}</h2>
+          <blockquote style="margin: 0; padding-left: 1rem; border-left: 4px solid var(--orange)">
+            <p>{{ story.quote }}</p>
+            {%- if story.attribution %}
+              <footer style="font-weight: 700">/ {{ story.attribution }}</footer>
+            {%- endif %}
+          </blockquote>
+          <a class="btn" href="{{ site.links.highlightForm }}" rel="noopener" target="_blank">
+            {{ story.cta }}
+          </a>
+        </div>
+
+        {%- if loop.index is even %}
+          <div class="media-frame">
+            <img src="{{ story.image }}" alt="" width="1000" height="700" loading="lazy" />
+          </div>
+        {%- endif %}
+      </div>
+    </div>
+  </section>
+{%- endfor %}

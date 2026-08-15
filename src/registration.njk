@@ -1,0 +1,39 @@
+---
+layout: layouts/base.njk
+permalink: /registration/
+title: Registration
+description: Register your interest in joining LYNK Robotics, FRC Team 9496. Filling out the form is not a commitment — it simply lets us follow up with you.
+---
+
+<section class="section section--center">
+  <div class="section__inner">
+    <h1>LYNK Registration</h1>
+    <p class="lede prose prose--center">
+      If you are interested in joining our team, please fill out the registration
+      form below. Doing so is not a commitment on either party to participate; it
+      simply lets us know of your interest, so that we can follow up. We look
+      forward to talking with you more!
+    </p>
+  </div>
+</section>
+
+<section class="section section--alt" style="padding-top: 0">
+  <div class="section__inner">
+    <iframe
+      class="form-embed"
+      src="{{ site.links.registrationForm }}"
+      title="LYNK Robotics registration form"
+      loading="lazy"
+    >
+      Loading…
+    </iframe>
+    <p style="text-align: center; margin-top: 1rem">
+      Trouble with the form?
+      <a href="{{ site.links.registrationForm | replace('?embedded=true', '') }}" rel="noopener" target="_blank">
+        Open it in a new tab
+      </a>.
+    </p>
+  </div>
+</section>
+
+{% include "partials/leads.njk" %}

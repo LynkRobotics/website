@@ -1,0 +1,32 @@
+name: Build check
+
+# Runs on every pull request so a broken template is caught before it
+# reaches main (and therefore before it reaches lynkrobotics.org).
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+
+      - name: Check every internal link resolves
+        run: node scripts/check-links.mjs
+
+      - name: Upload the built site
+        uses: actions/upload-artifact@v4
+        with:
+          name: site-preview
+          path: _site
+          retention-days: 7

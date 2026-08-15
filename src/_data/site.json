@@ -1,0 +1,54 @@
+{
+  "name": "LYNK Robotics",
+  "shortName": "LYNK",
+  "teamNumber": "9496",
+  "tagline": "FIRST® Robotics Competition Team 9496",
+  "url": "https://lynkrobotics.org",
+  "description": "LYNK is a community-based high school FIRST Robotics Competition team (FRC 9496) serving Rutherford County, North Carolina and the surrounding region, operating under Inspire Carolina, Inc.",
+  "parentOrg": {
+    "name": "Inspire Carolina, Inc.",
+    "url": "https://www.inspirecarolina.org/"
+  },
+  "contact": {
+    "email": "info@lynkrobotics.org",
+    "hq": "9496 LYNK Robotics HQ, 228 Callahan Koon Rd, Spindale, NC",
+    "mailingAddress": "5523 US 64 74A Hwy, Lake Lure, NC 28746",
+    "ein": "93-2958472"
+  },
+  "social": [
+    { "name": "Instagram", "url": "https://www.instagram.com/lynkfrc/" },
+    { "name": "Facebook", "url": "https://www.facebook.com/lynkfrc" },
+    { "name": "YouTube", "url": "https://www.youtube.com/@LynkFRC" }
+  ],
+  "links": {
+    "donate": "https://www.paypal.com/donate/?hosted_button_id=UKKVNVQXM7FKS",
+    "libraryOfKnowledge": "https://docs.lynkrobotics.org/",
+    "buildLog": "https://www.chiefdelphi.com/t/lynk-9496-build-log-2026/511797?u=razi.ela",
+    "registrationForm": "https://docs.google.com/forms/d/e/1FAIpQLScN3gSD57M_40KJQmpbQBnpPkL-uWOXGgUCIh6Y5mhG7FQNHw/viewform?embedded=true",
+    "highlightForm": "https://forms.gle/Knwi2bm1mahqFdGy8",
+    "blueAlliance": "https://www.thebluealliance.com/team/9496"
+  },
+  "nav": [
+    { "text": "Home", "url": "/" },
+    { "text": "Invest", "url": "/invest/" },
+    {
+      "text": "Our People",
+      "url": "/our-people/",
+      "children": [
+        { "text": "Board Members", "url": "/our-people/board/" },
+        { "text": "Mentors", "url": "/our-people/mentors/" }
+      ]
+    },
+    { "text": "Experiences That Matter", "url": "/experiences/" },
+    {
+      "text": "Seasons",
+      "url": "/seasons/2025/",
+      "children": [
+        { "text": "2025 Season", "url": "/seasons/2025/" },
+        { "text": "2024 Season (Rookie)", "url": "/seasons/2024/" }
+      ]
+    },
+    { "text": "FAQs", "url": "/faqs/" },
+    { "text": "Join Us", "url": "/registration/" }
+  ]
+}

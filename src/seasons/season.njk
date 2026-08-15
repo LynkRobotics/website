@@ -1,0 +1,131 @@
+---
+layout: layouts/base.njk
+pagination:
+  data: seasons
+  size: 1
+  alias: season
+permalink: "/seasons/{{ season.year }}/"
+eleventyComputed:
+  title: "{{ season.name }}"
+  description: "LYNK Robotics {{ season.year }} season: robot {{ season.robotName }}, {{ season.game }} game results, awards and team roster."
+  socialImage: "{{ season.robotImage }}"
+---
+
+<section class="hero">
+  <img class="hero__media" src="{{ season.heroImage }}" alt="" width="1400" height="933" fetchpriority="high" />
+  <div class="hero__scrim"></div>
+  <div class="hero__content">
+    <h1>{{ season.name }}</h1>
+  </div>
+</section>
+
+<section class="section section--dark">
+  <div class="section__inner">
+    <div class="split split--top">
+      <div class="stack">
+        <h2>{{ season.robotName }}</h2>
+        {%- if season.robotNameNote %}<p>{{ season.robotNameNote }}</p>{% endif %}
+        <div class="media-frame">
+          <img src="{{ season.robotImage }}" alt="The {{ season.year }} robot, {{ season.robotName }}" width="1400" height="933" loading="lazy" />
+        </div>
+      </div>
+
+      <div class="stack">
+        <img src="{{ season.gameLogo }}" alt="{{ season.game }} — the {{ season.year }} FIRST Robotics Competition game" width="900" height="320" loading="lazy" />
+        <a class="btn btn--block" href="{{ season.gameVideo }}" rel="noopener" target="_blank">
+          {{ season.year }} FRC | {{ season.game }}
+        </a>
+        <p>{{ season.gameSummary }}</p>
+        {%- if season.buildLog.note %}<p>{{ season.buildLog.note }}</p>{% endif %}
+        <a class="btn btn--block" href="{{ season.buildLog.url }}" rel="noopener" target="_blank">
+          Click Here to Read Our Build Log
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+{%- if season.gallery.count %}
+  <section class="section section--tight">
+    <div class="section__inner">
+      <h2 class="visually-hidden">{{ season.year }} season photos</h2>
+      <div class="gallery">
+        {%- for i in range(1, season.gallery.count + 1) %}
+          <img
+            src="{{ season.gallery.dir }}/{{ '0' if i < 10 }}{{ i }}.jpg"
+            alt="LYNK Robotics during the {{ season.year }} season"
+            width="1400"
+            height="933"
+            loading="lazy"
+          />
+        {%- endfor %}
+      </div>
+    </div>
+  </section>
+{%- endif %}
+
+<section class="section section--center">
+  <div class="section__inner">
+    <p class="lede prose prose--center">{{ season.summary }}</p>
+  </div>
+</section>
+
+<section class="section section--tight">
+  <div class="section__inner">
+    <img src="{{ season.bannersImage }}" alt="{{ season.year }} FIRST Robotics Competition winner banners" width="1400" height="500" loading="lazy" />
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="section__inner">
+    <div class="split split--top">
+      <div class="stack">
+        <h2>Season Info | Robot</h2>
+        <p>{{ season.robot.specs }}</p>
+        <p class="record">{{ season.robot.record }}</p>
+        <p><strong>Capabilities:</strong></p>
+        <ul class="spec-list">
+          {%- for c in season.robot.capabilities %}<li>{{ c }}</li>{% endfor %}
+        </ul>
+      </div>
+
+      <div class="stack">
+        <h2>Season Info | Events</h2>
+        <p class="record">{{ season.eventsRecord }}</p>
+        {%- for ev in season.events %}
+          <div class="event-result">
+            <h3><a href="{{ ev.url }}" rel="noopener" target="_blank">{{ ev.name }}</a></h3>
+            <p>{{ ev.result }}</p>
+            {%- if ev.awards.length %}
+              <ul class="award-list">
+                {%- for a in ev.awards %}<li>{{ a }}</li>{% endfor %}
+              </ul>
+            {%- endif %}
+            <p>{{ ev.playoff }}</p>
+          </div>
+        {%- endfor %}
+      </div>
+    </div>
+
+    <div class="btn-row" style="margin-top: 2rem">
+      <a class="btn" href="{{ season.buildLog.url }}" rel="noopener" target="_blank">{{ season.buildLog.label }}</a>
+      <a class="btn" href="{{ season.tba }}" rel="noopener" target="_blank">{{ season.year }} Season Info | TBA</a>
+    </div>
+  </div>
+</section>
+
+<section class="section section--dark">
+  <div class="section__inner">
+    <h2 style="text-align: center">{{ season.rosterHeading }}</h2>
+    <ul class="roster" style="margin-top: 1.5rem">
+      {%- for r in season.roster %}<li>{{ r }}</li>{% endfor %}
+    </ul>
+  </div>
+</section>
+
+{%- if season.divider %}
+  <img src="{{ season.divider }}" alt="" width="1200" height="128" style="width: 100%" loading="lazy" />
+{%- endif %}
+
+{% set sponsorsHeading = season.sponsorsHeading %}
+{% include "partials/sponsors.njk" %}

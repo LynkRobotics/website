@@ -1,0 +1,29 @@
+{#
+  Investor / sponsor wall. Tiers and logos live in src/_data/sponsors.json —
+  add a sponsor by dropping a logo in assets/img/sponsors/ and adding one
+  entry to the right tier.
+#}
+<section class="section section--orange section--ink-heading section--center">
+  <div class="section__inner">
+    <h2>{{ sponsorsHeading or "THANK YOU TO OUR INVESTORS" }}</h2>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section__inner">
+    {%- for tier in sponsors.tiers %}
+      <div class="sponsor-tier sponsor-tier--{{ tier.size }}">
+        {%- for item in tier.items %}
+          <div class="sponsor">
+            {%- if item.logo %}
+              <img src="{{ item.logo }}" alt="{{ item.name }}" loading="lazy" />
+              {%- if item.showName %}<p class="sponsor__name">{{ item.name }}</p>{% endif %}
+            {%- else %}
+              <p class="sponsor__name sponsor__name--only">{{ item.name }}</p>
+            {%- endif %}
+          </div>
+        {%- endfor %}
+      </div>
+    {%- endfor %}
+  </div>
+</section>

@@ -1,0 +1,56 @@
+---
+layout: layouts/base.njk
+permalink: /our-people/mentors/
+title: Mentors
+description: The mentors who coach, teach and encourage the students of LYNK Robotics, FRC Team 9496.
+socialImage: /assets/img/mentors/bob-bell.jpg
+---
+
+<section class="hero">
+  <img class="hero__media" src="/assets/img/hero/mentors.webp" alt="" width="1280" height="720" fetchpriority="high" />
+  <div class="hero__scrim"></div>
+  <div class="hero__content">
+    <h1>Mentors — LYNK</h1>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section__inner">
+    <div class="card-grid card-grid--wide">
+      {%- for m in mentors %}
+        <article class="person">
+          <img
+            class="person__photo"
+            src="{{ m.photo }}"
+            alt="{{ m.name }}"
+            width="500"
+            height="500"
+            loading="lazy"
+          />
+          <div>
+            <p class="person__name">{{ m.name }}</p>
+            <p class="person__title">{{ m.title }}</p>
+            <p class="person__role">{{ m.role }}</p>
+            <p class="person__why"><b>My whY:</b> {{ m.why }}</p>
+            <p class="person__since">
+              Mentor: {{ m.since }}{% if m.alum %} · {{ m.alum }}{% endif %}
+            </p>
+          </div>
+        </article>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section section--dark section--center section--tight">
+  <div class="section__inner">
+    <h2>Interested in mentoring?</h2>
+    <p class="prose prose--center">
+      Mentoring these students is a rewarding opportunity, and doesn’t require any
+      experience with robotics. We are always looking for additional help.
+    </p>
+    <div class="btn-row" style="margin-top: 1.5rem">
+      <a class="btn" href="mailto:{{ site.contact.email }}">Contact Us</a>
+    </div>
+  </div>
+</section>

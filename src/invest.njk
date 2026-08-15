@@ -1,0 +1,157 @@
+---
+layout: layouts/base.njk
+permalink: /invest/
+title: Invest
+description: Inspire Carolina, Inc. and LYNK Robotics rely on business partners and community members to give students this opportunity. Here is how to invest.
+socialImage: /assets/img/hero/invest.jpg
+---
+
+<section class="hero">
+  <img class="hero__media" src="/assets/img/hero/invest.jpg" alt="" width="1800" height="1200" fetchpriority="high" />
+  <div class="hero__scrim"></div>
+  <div class="hero__content">
+    <h1>Invest</h1>
+    <a class="btn" href="{{ site.links.donate }}" rel="noopener" target="_blank">Invest Now</a>
+  </div>
+</section>
+
+<section class="section section--center">
+  <div class="section__inner">
+    <p class="lede prose prose--center">
+      As a non-profit organization, Inspire Carolina, Inc. &amp; LYNK Robotics
+      rely on the generosity of our business partners and community members in
+      order to be able to provide this incredible opportunity to the students on
+      our team, and to complete outreach events in our community.
+    </p>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="section__inner">
+    <div class="split split--top">
+      <div class="stack">
+        <h2>Here’s how you can easily make an investment</h2>
+        <p>
+          Checks can be made out to either “Inspire Carolina, Inc.” or to “Lynk
+          Robotics”. If you would like to direct your giving to a particular
+          program, please note that on the memo of your check, or in an
+          accompanying letter. We take care to honor the generosity of our
+          investors by respecting their wishes regarding the use of any donated
+          funds. We would also be happy to follow up with you to share about the
+          impact of your investment.
+        </p>
+        <p>
+          If you would like to invest to support our activities, you may mail a
+          check to: {{ site.contact.mailingAddress }}.
+        </p>
+        <p>
+          For tax and verification purposes, please note that our IRS EIN is
+          {{ site.contact.ein }}.
+        </p>
+        <a class="btn" href="{{ site.links.donate }}" rel="noopener" target="_blank">Invest Now</a>
+      </div>
+
+      <div class="media-frame">
+        <img
+          src="/assets/img/invest/investor-levels.jpg"
+          alt="Investor levels: Peak ($15,000+), Overlook ($5,000 up to $15,000), Trailhead ($1,000 up to $5,000) and Gorge (up to $1,000), each with escalating recognition on season shirts, the robot, our website and social media."
+          width="1100"
+          height="1085"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="section__inner">
+    <div class="split split--top">
+      <div class="media-frame">
+        <img
+          src="/assets/img/invest/fundraising-tracker.jpg"
+          alt="Fundraising tracker showing a $240,000 goal for the season, broken into lodging, food, sustainability, brand and offseason projects, field elements, robot and registration."
+          width="900"
+          height="1324"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="stack">
+        <h2>Current Needs</h2>
+
+        <h3>The LYNK Robotics Team Mobile Pit/Workshop</h3>
+        <p>
+          For those who would like to partner with us towards a specific goal,
+          our current big need is to establish a mobile workshop with all the
+          necessary tools for robot development and maintenance, organized and
+          packaged in a way that we can both work from it on a regular basis and
+          take it to events.
+        </p>
+        <p>
+          <a href="https://drive.google.com/file/d/14gt_5uRFQHJh6OftBqk-OGX7NEHP5Y0F/view" rel="noopener" target="_blank">
+            Read the mobile workshop proposal (Google Drive)
+          </a>
+        </p>
+
+        <h3>2026 REBUILT presented by Haas</h3>
+        <p>
+          You could also sponsor our FIRST Robotics Competition events that we’ll
+          be attending, which involves costs for registration, travel, lodging,
+          etc. Currently, we plan to compete in:
+        </p>
+        <ul>
+          {%- for ev in events.competitions %}
+            {%- if not ev.conditional %}
+              <li>
+                {{ ev.start | prettyDate }}–{{ ev.end | prettyDate }} in
+                <a href="{{ ev.url }}" rel="noopener" target="_blank">{{ ev.city }}</a>
+              </li>
+            {%- endif %}
+          {%- endfor %}
+        </ul>
+        <p>{{ events.qualifierNote }}</p>
+        <ul>
+          <li>
+            April 9–12 North Carolina
+            <a href="https://frc-events.firstinspires.org/2026/NCCMP" rel="noopener" target="_blank">State Championship</a>
+          </li>
+          <li>
+            April 29–May 2
+            <a href="https://www.firstchampionship.org" rel="noopener" target="_blank">World Championship</a>
+            in Houston, TX
+          </li>
+        </ul>
+        <p>
+          Please <a href="mailto:{{ site.contact.email }}">contact us</a> if you
+          would like to discuss full or partial sponsorship of events.
+        </p>
+
+        <h3>In-Kind Services and Items</h3>
+        <p>
+          In no particular order, below is a list of in-kind services and items
+          that we’ve identified as top priority:
+        </p>
+        <ul>
+          <li>Tools for our machining lab</li>
+          <li>Robot materials</li>
+          <li>Outreach materials (printing, etc.)</li>
+          <li>Manufacturing assistance</li>
+          <li>Accounting services</li>
+          <li>Legal services</li>
+        </ul>
+        <p>
+          Please <a href="mailto:{{ site.contact.email }}">contact us</a> if you
+          would like to make an in-kind donation.
+        </p>
+        <p><strong>We’d be delighted to partner with you!</strong></p>
+      </div>
+    </div>
+
+    <div class="btn-row" style="margin-top: 2.5rem">
+      <a class="btn" href="{{ site.links.donate }}" rel="noopener" target="_blank">Invest Now</a>
+    </div>
+  </div>
+</section>
+
+{% include "partials/sponsors.njk" %}

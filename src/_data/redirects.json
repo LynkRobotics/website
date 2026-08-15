@@ -1,0 +1,13 @@
+[
+  { "from": "/lynk/", "to": "/" },
+  { "from": "/home/", "to": "/" },
+  { "from": "/lynk/lynk-registration/", "to": "/registration/" },
+  { "from": "/lynk/lynk-faqs/", "to": "/faqs/" },
+  { "from": "/lynk/2025-season/", "to": "/seasons/2025/" },
+  { "from": "/lynk/2024-season-rookie/", "to": "/seasons/2024/" },
+  { "from": "/lynk/member-login/", "to": "/" },
+  { "from": "/our-people/board-members-ici/", "to": "/our-people/board/" },
+  { "from": "/our-people/mentors-lynk/", "to": "/our-people/mentors/" },
+  { "from": "/experiences-that-matter/", "to": "/experiences/" },
+  { "from": "/invest-1/", "to": "/invest/" }
+]

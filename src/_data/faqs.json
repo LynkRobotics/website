@@ -1,0 +1,92 @@
+[
+  {
+    "slug": "what-is-first",
+    "q": "What is FIRST®?",
+    "body": "<p>FIRST® is “a robotics community that prepares young people for the future and the world’s leading youth-serving nonprofit advancing science, technology, engineering, and math (STEM).” It is a volunteer-driven program with a world-wide reach, with some world-leading industry partners. You can learn more in <a href=\"https://www.firstinspires.org/sites/default/files/uploads/resource_library/first-faq.pdf\" rel=\"noopener\" target=\"_blank\">FIRST’s official FAQ</a>. The short video below also does a great job explaining how FIRST is more than just making robots; robotics competitions are simply the program we use to foster development in the students that participate.</p>",
+    "video": {
+      "id": "igR409sJly0",
+      "thumb": "/assets/img/video/what-is-first.jpg",
+      "title": "More Than Robots — FIRST"
+    }
+  },
+  {
+    "slug": "what-is-frc",
+    "q": "What is the FIRST® Robotics Competition (FRC)?",
+    "body": "<p>FRC is the program organized by FIRST® for students grades 9-12 (ages 14 to 18). It is a challenging annual competition with an official season that begins in January and potentially lasts through April, though some form of team activity is usually happening year-round. The program “challenges high-school-aged students – working with professional mentors – to design and build a robot and compete in high-intensity events that reward the effectiveness of each robot, the power of team strategy and collaboration, and the determination of students.” While focused around a robotics competition, there are many, far-ranging skills that can be developed by participating on a team. Over 3,000 teams worldwide compete in FRC annually.</p><p>The short video below includes students describing what the FRC program is like, including some of its benefits.</p>",
+    "video": {
+      "id": "SJf6iG_SDE8",
+      "thumb": "/assets/img/video/what-is-frc.jpg",
+      "title": "What is the FIRST Robotics Competition?"
+    }
+  },
+  {
+    "slug": "what-is-lynk",
+    "q": "What is LYNK?",
+    "body": "<p>LYNK is a FRC team founded for the 2024 FRC season and based in Western NC. LYNK was specifically formed as a community-based team, in order to be able to offer participation in the FRC program to those students to whom it was not otherwise available. LYNK is one of approximately 90 high school teams that compete in the FIRST North Carolina District, organized by <a href=\"https://www.firstnorthcarolina.org/\" rel=\"noopener\" target=\"_blank\">FIRST North Carolina</a>.</p>"
+  },
+  {
+    "slug": "what-is-inspire-carolina",
+    "q": "What is Inspire Carolina, Inc.?",
+    "body": "<p>Inspire Carolina, Inc. is a non-profit organization founded to initially be the governing board of LYNK, with the potential to grow the mission of “inspiring students to inspire others” through other programs in the future.</p><p>The video below is an interview with members of Yeti, a premiere FRC team from Charlotte, organized under the banner of the Queen City Robotics Alliance, and represents an aspirational goal for what LYNK and Inspire Carolina could grow to become for our region.</p>",
+    "video": {
+      "id": "UCqZpkT3ouI",
+      "thumb": "/assets/img/video/yeti-interview.jpg",
+      "title": "Interview with FRC Team Yeti"
+    }
+  },
+  {
+    "slug": "adult-leaders",
+    "q": "Who are the adult leaders for LYNK?",
+    "body": "<p>We believe we have an outstanding core team of experienced mentors to help launch LYNK. You can meet the whole group on our <a href=\"/our-people/mentors/\">mentors page</a>.</p><p>While it is not mandated by FIRST, we ensure that all of our mentors who have continued contact with the students pass the FIRST Youth Protection Program screening.</p><p>We are always looking for additional help. Mentoring these students is a rewarding opportunity, and doesn’t require any experience with robotics! If you’d consider mentoring or otherwise volunteering with LYNK, please <a href=\"mailto:info@lynkrobotics.org\">contact us</a>.</p>"
+  },
+  {
+    "slug": "frc-season",
+    "q": "What does an FRC season look like?",
+    "body": "<p>Though work typically begins even earlier (more on that later), the FRC season officially begins early in January with a kickoff event, where all teams learn of the specific challenge and competition for that season for the first time. This begins a six week “build season”, where teams work intensely on designing and building a robot that meets the specific challenge for that season. Teams typically meet 3 to 5 times a week during the build season, sometimes staying quite late to attempt to work out problems (with parental permission and mentor availability).</p><p>After the six week build season completes, a six week competition season begins. Each weekend, teams in North Carolina gather in locations around the state to compete with each other. Competition environments are electrifying, often similar to collegiate sporting events! Each team will compete in two district qualifying events in the first four weeks of the competition season, often working on improving their robot between events with nearly the same intensity as during the build season.</p><p>Each match at every event consists of an alliance of three teams and their robots competing against another alliance of three teams and their robots. Teams may compete both alongside and against other teams at the same event. There is a spirit of “Coopertition” at every event, where teams support and encourage each other, but also strive do their competitive best.</p><p>Teams that are fortunate to do well enough at their two district events advance to compete in the District (State) Championship in week 5. Teams that qualify at the District Championship go on to compete at the World Championship in Houston, Texas.</p><p>May through October constitute the “off-season”, though team members are not usually idle during this time. There may be off-season competitions in which the team may participate, and team members may choose to use this time to explore new or improved robot designs. This is also often the time when many community outreach events are scheduled, and while not every student attends every event, participation on the whole is generally expected.</p><p>Sometime around October, many teams transition to preparation for the new season in January. This may involve selecting student team leaders, updating the team’s workspace, planning events, training new or even returning students, etc.</p><p>In January, it all begins again with a new season!</p><p>The video below shows what the build and competition season can entail, from prototyping robot mechanisms, to competing at the World Championship.</p>",
+    "video": {
+      "id": "-OnvVicLIgs",
+      "thumb": "/assets/img/video/build-and-competition-season.jpg",
+      "title": "An FRC build and competition season"
+    }
+  },
+  {
+    "slug": "competition-events",
+    "q": "Is there any way I can get a feel for what competition events are like?",
+    "body": "<p>One way is to attend an off-season competition event. While smaller in scale, these can be a great way to get a feel for what an FRC competition is. We encourage you to stop by one, say hello, see the competition, and ask questions of us and the other teams present. Our <a href=\"/#about\">upcoming events</a> are listed on the home page.</p><p>While nothing can fully capture the excitement of being at a competition in person, the video below captures some of the excitement of being present at an event (in this case, the World Championship).</p>",
+    "video": {
+      "id": "LOnKA_XS-nU",
+      "thumb": "/assets/img/video/competition-excitement.jpg",
+      "title": "The excitement of an FRC championship event"
+    }
+  },
+  {
+    "slug": "what-students-gain",
+    "q": "What can a student team member expect to gain from the experience?",
+    "body": "<p>FRC offers as close to a “real-world” engineering experience that a high school student can expect to find. The time pressures, required learning and growth, need for teamwork, and ultimate evaluation through competition all mirror aspects found in professional engineering environments. Students may develop specific skills in software development, computer-assisted design (CAD), mechanical engineering and assembly, wiring/soldering, etc. However, often even more significant than the specific skills learned is the development of an engineering mindset, and the other “soft” skills that are developed.</p>"
+  },
+  {
+    "slug": "non-robot-roles",
+    "q": "Is there a place on the team for students who are not particularly interested in building a robot themselves?",
+    "body": "<p>While building a robot is challenging and exciting, it is really just a method that is used to develop the students involved with the program. For students who do not desire to work directly on the robot, there are plenty of other activities for them to be involved with, or even lead, such as working on the business plan, managing social media, website development, video editing and other media, coordinating outreach events, preparing awards presentations, etc.</p><p>The video below from a veteran team identifies some of the many roles that need to be filled to make a successful team, including both robot-related roles and those not very connected to designing the robot. We might not structure the team exactly as the Ratchet Rockers have structured their team, but we will need people to fill all the same roles!</p>",
+    "video": {
+      "id": "Fv04MsmmMf8",
+      "thumb": "/assets/img/video/team-roles.jpg",
+      "title": "Roles on an FRC team"
+    }
+  },
+  {
+    "slug": "student-expectations",
+    "q": "What is expected of a student team member?",
+    "body": "<p>In order to have a successful team, team members need to be able to count on one another. Therefore, an important aspect of team membership is regular and active participation in team meetings. Team members that do not attend meetings, or who are not active during meetings, may be ineligible to attend competition events, and repeated non-participation may result in a meeting to discuss continued team membership.</p><p>Team members are also expected to be welcoming and encouraging to all current and new team members; we believe that everyone has value and something that they can contribute to the team.</p><p>Additionally, robotics competitions are expensive. It is expensive to build a robot, and there are numerous competition fees, travel expenses, overhead, etc. While the ideal arrangement would be to limit the cost per student to a nominal participation fee, this largely depends on the success of fundraising, support from business partners, and successful grant applications. Depending on the level of support received, there may be additional costs to students participating in competitions.</p>"
+  },
+  {
+    "slug": "how-adults-help",
+    "q": "How can adults help?",
+    "body": "<p>LYNK is a volunteer-run organization. Operating a robotics team is a time-consuming program, and it cannot operate without the sacrificial investment from many committed adults. There are many ways that adults can support the team, such as:</p><ul><li>Volunteering as a mentor, whether it be robot-related or other non-robot activities (please <a href=\"mailto:info@lynkrobotics.org\">contact us</a> if you are interested)</li><li>Donating your time if you have specific professional qualifications, such as a lawyer or accountant</li><li>Assistance with fundraising activities and identifying business partners</li><li>As an “involved parent”, helping to plan lunches, transportation, etc.</li><li>Ensuring that your child is able to attend and participate in team meetings</li></ul>"
+  },
+  {
+    "slug": "other-needs",
+    "q": "Is there anything else that you need?",
+    "body": "<p>We always have needs that the community can help with:</p><ul><li>We could use additional mentors and involved parents.</li><li>We need business partners who can help support the team.</li></ul><p>If you might be able to help with any of these things, please <a href=\"mailto:info@lynkrobotics.org\">contact us</a>, or see our <a href=\"/invest/\">Invest</a> page for current needs.</p>"
+  }
+]

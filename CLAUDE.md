@@ -1,0 +1,147 @@
+# LYNK Robotics website — working notes for Claude
+
+This repository is the source for **lynkrobotics.org**, the website of LYNK
+Robotics (FIRST Robotics Competition Team 9496), which operates under Inspire
+Carolina, Inc.
+
+It is a static site built with [Eleventy](https://www.11ty.dev/) and published
+to GitHub Pages by a GitHub Action. There is no server and no database.
+
+## The rule that matters most
+
+**Content lives in `src/_data/*.json`, not in templates.** Before editing a
+template, check whether the change is really a data change. Adding a mentor,
+a sponsor, a competition or a season should never require touching HTML.
+
+| To change this            | Edit this                             |
+| ------------------------- | ------------------------------------- |
+| Site name, nav, contact info, social links, PayPal/Chief Delphi/Drive URLs | `src/_data/site.json` |
+| Mentors (the Mentors page)| `src/_data/mentors.json`              |
+| Inspire Carolina board    | `src/_data/board.json`                |
+| The two co-lead contacts  | `src/_data/leads.json`                |
+| Sponsor logos and tiers   | `src/_data/sponsors.json`             |
+| Upcoming events on the home page | `src/_data/events.json`        |
+| FAQ questions and answers | `src/_data/faqs.json`                 |
+| Testimonials on /experiences/ | `src/_data/experiences.json`      |
+| A whole season (robot, results, roster) | `src/_data/seasons.json`|
+| Old URLs that must keep working | `src/_data/redirects.json`      |
+
+## Layout of the repository
+
+```
+src/
+  _data/         content as JSON — see the table above
+  _includes/
+    layouts/base.njk        the page shell (head, header, footer)
+    partials/               header, footer, social icons, sponsors, leads, video
+  assets/
+    css/site.css            all styling; design tokens live at the top
+    css/fonts.css           self-hosted @font-face rules (do not hand-edit)
+    fonts/                  Red Hat Display + Roboto woff2 files
+    img/                    all imagery, grouped by page/purpose
+    js/site.js              mobile nav + click-to-load YouTube. Nothing else.
+  *.njk                     one file per page
+  seasons/season.njk        generates /seasons/<year>/ for every entry in seasons.json
+  redirect.njk              generates a stub for every entry in redirects.json
+scripts/check-links.mjs     fails the build on a broken internal link
+.github/workflows/          deploy (on main) and build check (on PRs)
+```
+
+## Commands
+
+```bash
+npm install       # once
+npm start         # local preview at http://localhost:8080 with live reload
+npm run build     # write the site to _site/
+npm run check     # build, then verify every internal link resolves
+```
+
+Always run `npm run check` before handing work back. It catches the most
+common breakage: a page renamed in one place but still linked from another.
+
+## House style
+
+- **Design tokens first.** Colours, fonts and spacing are CSS custom properties
+  at the top of `site.css`. The brand orange is `#BF5700` (`--orange`) and the
+  near-black is `#1C1C1C` (`--ink`). Use the tokens; do not paste hex values
+  into rules.
+- **Section variants** do the heavy lifting: `.section--dark`, `.section--orange`,
+  `.section--alt`, `.section--center`, `.section--tight`. Compose these rather
+  than writing new one-off section styles.
+- **Every image needs a real `alt`**, except purely decorative ones, which take
+  `alt=""`. Hero background images are decorative.
+- **Every image below the fold gets `loading="lazy"`** and explicit
+  `width`/`height` so the page does not jump while it loads.
+- **Links that leave the site** get `rel="noopener" target="_blank"`.
+- **No third-party requests on page load.** Fonts are self-hosted, YouTube is
+  click-to-load, social icons are inline SVG. Keep it that way — adding a CDN
+  script or a Google Fonts link would undo this.
+
+## Adding things
+
+**A mentor:** add an object to `src/_data/mentors.json` and put a square photo
+in `src/assets/img/mentors/<first-last>.jpg` (about 500×500, JPEG quality ~82).
+
+**A sponsor:** drop the logo in `src/assets/img/sponsors/`, then add an entry to
+the right tier in `src/_data/sponsors.json`. Tiers render largest first. A
+sponsor with `"logo": null` renders as a name in text. Set `"showName": true`
+to print the name under a logo.
+
+**A new season:** add an entry to `src/_data/seasons.json` — the page at
+`/seasons/<year>/` is generated automatically. Add the year to the "Seasons"
+dropdown in `site.json`'s `nav`. Gallery photos go in
+`src/assets/img/seasons/<year>/gallery/` numbered `01.jpg`, `02.jpg`, … and the
+count goes in the season's `gallery.count`.
+
+**A new page:** create `src/<name>.njk` with front matter setting
+`layout: layouts/base.njk`, `permalink`, `title` and `description`, then add it
+to `nav` in `site.json`.
+
+**Renaming a page:** add the old path to `src/_data/redirects.json` so existing
+links and bookmarks keep working.
+
+## Images
+
+Source images are committed already optimized. When adding new ones, resize
+before committing — nothing in the build pipeline resizes images.
+
+| Use                | Max width | Format |
+| ------------------ | --------- | ------ |
+| Hero / full-bleed  | 1800px    | JPEG q82 |
+| Section photo      | 1400px    | JPEG q82 |
+| Gallery photo      | 1400px    | JPEG q82 |
+| Mentor headshot    | 500px     | JPEG q82 |
+| Board headshot     | 700px     | JPEG q82 |
+| Sponsor logo       | 540–700px | PNG if it needs transparency, else JPEG |
+
+Animated heroes are animated WebP (`hero/*.webp`), converted from the original
+GIFs. They are far smaller than GIF and drop into an ordinary `<img>`.
+
+## Publishing
+
+`main` is the live site. Pushing to `main` triggers
+`.github/workflows/deploy.yml`, which builds and deploys to GitHub Pages,
+served at lynkrobotics.org.
+
+**Do all work on a branch and open a pull request.** A human previews locally
+with `npm start`, then merges. Never commit straight to `main` unless asked to.
+
+`src/CNAME` must keep containing `lynkrobotics.org` — the deploy fails loudly
+if it goes missing, because losing it would drop the custom domain.
+
+## Known content issues (inherited from the old Google Sites site)
+
+These were carried over verbatim during the migration rather than silently
+"fixed". Change them when the team confirms the right values:
+
+1. `seasons.json` → 2025 season: `robot.record` and `eventsRecord` both quote
+   the **2024** figures ("74-18-0 … in 2024"), while the season summary says the
+   2025 record was 88-14-2.
+2. `seasons.json` → 2025 season: three of the five events (UNC Asheville,
+   Mecklenburg County, NC District State Championship) link to **2024**
+   Blue Alliance pages and quote 2024 records. The 2025 banner artwork on that
+   page shows these were 2025 events, so the links and records are stale.
+3. The FAQ answer "What does an FRC season look like?" had hard-coded 2024
+   championship dates; they were made generic during migration.
+4. The FAQ answer about attending an off-season event referenced a **2023**
+   THOR West date; it now points at the home page events list instead.

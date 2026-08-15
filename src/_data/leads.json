@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Raziela \"Razi\" Pohlman",
+    "role": "Business + Administrative Lead",
+    "photo": "/assets/img/people/raziela-pohlman.jpg",
+    "phone": "828.772.6336",
+    "phoneHref": "tel:+1-828-772-6336",
+    "email": "razi@lynkrobotic.org"
+  },
+  {
+    "name": "Bob Bell",
+    "role": "Software Lead",
+    "photo": "/assets/img/people/bob-bell.jpg",
+    "phone": "603.548.4275",
+    "phoneHref": "tel:+1-603-548-4275",
+    "email": "bob@lynkrobotics.org"
+  }
+]

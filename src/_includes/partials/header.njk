@@ -1,0 +1,39 @@
+<header class="site-header">
+  <div class="site-header__inner">
+    <a class="site-header__brand" href="/">
+      <img src="/assets/img/brand/lynk-logo.png" alt="" width="34" height="34" />
+      <span>{{ site.name }}</span>
+    </a>
+
+    <button
+      class="nav__toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="primary-nav"
+      aria-label="Menu"
+    >
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z" />
+      </svg>
+    </button>
+
+    <nav class="nav" id="primary-nav" aria-label="Primary">
+      {%- for item in site.nav %}
+        {%- if item.children %}
+          <div class="nav__item">
+            <a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.text }}</a>
+            <ul class="nav__submenu">
+              {%- for child in item.children %}
+                <li>
+                  <a href="{{ child.url }}"{% if page.url == child.url %} aria-current="page"{% endif %}>{{ child.text }}</a>
+                </li>
+              {%- endfor %}
+            </ul>
+          </div>
+        {%- else %}
+          <a href="{{ item.url }}"{% if page.url == item.url %} aria-current="page"{% endif %}>{{ item.text }}</a>
+        {%- endif %}
+      {%- endfor %}
+    </nav>
+  </div>
+</header>

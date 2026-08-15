@@ -1,0 +1,22 @@
+{#
+  Co-Lead Mentors contact block. Appears on the home page and the
+  registration page. Edit the people in src/_data/leads.json.
+#}
+<section class="section section--tight">
+  <div class="section__inner">
+    <h2 style="text-align: center">Co-Lead Mentors Contact Info</h2>
+    <div class="card-grid card-grid--wide" style="margin-top: 2rem">
+      {%- for lead in leads %}
+        <div class="lead-card">
+          <img class="lead-card__photo" src="{{ lead.photo }}" alt="{{ lead.name }}" width="240" height="240" loading="lazy" />
+          <div>
+            <p class="lead-card__name">{{ lead.name }}</p>
+            <p>{{ lead.role }}</p>
+            <p>☎️ <a href="{{ lead.phoneHref }}">{{ lead.phone }}</a></p>
+            <p>💻 <a href="mailto:{{ lead.email }}">{{ lead.email }}</a></p>
+          </div>
+        </div>
+      {%- endfor %}
+    </div>
+  </div>
+</section>
