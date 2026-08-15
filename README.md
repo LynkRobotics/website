@@ -6,6 +6,10 @@ operating under Inspire Carolina, Inc.
 Static site built with [Eleventy](https://www.11ty.dev/), published to GitHub
 Pages at <https://lynkrobotics.org>.
 
+> **Setting this up for the first time?** Start with [SETUP.md](SETUP.md) —
+> the branch, GitHub Pages and DNS steps that have to happen once before
+> lynkrobotics.org serves this site.
+
 ---
 
 ## The everyday workflow
