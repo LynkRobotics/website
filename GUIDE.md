@@ -4,6 +4,9 @@ You do not need to know how to code. You do not need to understand GitHub. You
 describe the change in ordinary English, look at a picture of the result, and a
 maintainer publishes it.
 
+Everything happens in a web browser. **There is nothing to install and nothing
+to run on your computer.**
+
 Most changes take about five minutes.
 
 ---
@@ -32,8 +35,8 @@ like and pick any username.
 
 ### 2. Get added to the team
 
-Send your GitHub username to **<info@lynkrobotics.org>**, or tell a maintainer
-directly. They will send you an invitation to the LynkRobotics organisation.
+Send your GitHub username to **<github@lynkrobotics.org>**, or speak to a team
+mentor. They will send you an invitation to the LynkRobotics organisation.
 
 Accept it from the email, or at **<https://github.com/LynkRobotics>**.
 
@@ -43,11 +46,35 @@ Accept it from the email, or at **<https://github.com/LynkRobotics>**.
 
 ### 3. Get access to Claude
 
-Claude is the assistant that actually makes the edits. Go to
-**<https://claude.ai>** and sign in or sign up.
+Claude is the assistant that actually makes the edits.
 
-Ask a maintainer whether the team has a plan you should be added to. Making
-changes this way needs Claude Code, which is on the paid plans.
+**Ask a team mentor for access to Claude.** The team provides the account, so
+there is nothing for you to buy and nothing to install.
+
+Once you have the login, go to **<https://claude.ai>** and sign in with it.
+
+### 4. Let Claude see the website files
+
+The one fiddly step, and it is also once-only.
+
+Go to **<https://claude.ai/code>**, signed in with that same account. This is
+the part of Claude that can work on files — an ordinary chat window at
+claude.ai cannot.
+
+You will be asked to connect GitHub. Click through it, and when GitHub asks
+which repositories Claude may use, choose **LynkRobotics/website**.
+
+Approving that is what lets Claude do the two things this whole guide depends
+on: save your change onto a branch of its own, and open a pull request asking a
+maintainer to approve it. It does **not** let Claude publish — only a maintainer
+pressing Merge can do that.
+
+> **If GitHub says an organisation owner has to approve it,** click the button
+> to send the request, then email <github@lynkrobotics.org> so somebody says yes.
+> This only ever happens once.
+
+You are done when **LynkRobotics/website** appears in the list of projects at
+<https://claude.ai/code>.
 
 **That is the setup finished.** You never have to do it again.
 
@@ -59,12 +86,13 @@ Let us walk through a real one: adding a mentor.
 
 ### Step 1 — Open the website project
 
-Go to **<https://claude.ai/code>**.
+Go to **<https://claude.ai/code>** and choose **LynkRobotics/website** from the
+list of projects. If it is not there, go back to setup step 4.
 
-Choose the **LynkRobotics/website** repository from the list. If it is not
-there, look for an option to connect GitHub and grant access, then try again.
+If it asks which branch to start from, choose **main**.
 
-You will get a chat box. That is the whole interface.
+You get a chat box. That is the whole interface — nothing to install, nothing to
+type into a terminal, nothing to run on your own computer.
 
 ### Step 2 — Say what you want
 
@@ -84,7 +112,11 @@ and it will ask you for each piece.
 ### Step 3 — Wait a minute
 
 Claude will edit the files, check nothing is broken, and put the change forward
-for approval. You do not need to follow along.
+for approval. You do not need to follow along, and you do not need to press
+anything to save it.
+
+> If it finishes without giving you a link to a pull request, just say **"please
+> open a pull request for this"**.
 
 ### Step 4 — Look at the result
 
@@ -160,8 +192,15 @@ all.
 ## If something goes wrong
 
 **"I do not see the repository in Claude."**
-You are probably not in the organisation yet, or have not accepted the
-invitation. Check <https://github.com/LynkRobotics/website> loads for you.
+Three things to check, in order. Are you at <https://claude.ai/code> rather than
+ordinary claude.ai? Does <https://github.com/LynkRobotics/website> load when you
+are signed in to GitHub — if not, your invitation is still waiting. And did you
+tick **LynkRobotics/website** when Claude asked which repositories it may use?
+Setup step 4 covers redoing that. Still stuck: <github@lynkrobotics.org>.
+
+**"It says an organisation owner needs to approve."**
+Send the request from that screen, then email <github@lynkrobotics.org>. Once
+somebody approves it you will not be asked again.
 
 **"Claude says a check failed."**
 Something in the change does not build. Say *"that check failed, can you fix
@@ -196,6 +235,9 @@ You can ignore all of these, but in case you see them:
 
 ## Who to ask
 
+- Getting into GitHub, or Claude cannot see the repository →
+  <github@lynkrobotics.org>, or any team mentor
+- Access to Claude → ask a team mentor
 - Website not doing what you expect → <info@lynkrobotics.org>
 - Need publishing rights → ask a member of the
   [website-maintainers](https://github.com/orgs/LynkRobotics/teams/website-maintainers)

@@ -39,9 +39,10 @@ You do not need to know Git, Eleventy, or HTML.
 `CLAUDE.md` in this repository tells Claude where every piece of content lives
 and what the house style is, so you do not have to.
 
-## The manual way
+## The manual way (developers only)
 
-If you would rather edit directly:
+Entirely optional — nothing in the workflow above needs it. If you would rather
+edit directly:
 
 ```bash
 git clone https://github.com/LynkRobotics/website.git

@@ -82,17 +82,6 @@ the `website-maintainers` team.
 To roll back, revert the merge commit on `main` — the next deploy restores the
 previous state.
 
-### If you do want to run it locally
-
-Never required, but it is the fastest loop if you are editing yourself:
-
-```bash
-git clone https://github.com/LynkRobotics/website.git
-cd website
-npm install
-npm start          # http://localhost:8080, live reload
-```
-
 ---
 
 ## What lives where
@@ -116,7 +105,19 @@ Content is **data, not markup**. Most changes are a few lines of JSON.
 Page templates are the `.njk` files in `src/`. The shared header and footer are
 in `src/_includes/`.
 
-## Commands
+## Running it locally
+
+**Only for people editing the code themselves.** The workflow above never needs
+it — see [GUIDE.md](GUIDE.md) for the browser-only path.
+
+```bash
+git clone https://github.com/LynkRobotics/website.git
+cd website
+npm install
+npm start          # http://localhost:8080, live reload
+```
+
+### Commands
 
 | Command         | What it does                                              |
 | --------------- | --------------------------------------------------------- |
