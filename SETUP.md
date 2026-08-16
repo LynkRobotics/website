@@ -4,7 +4,7 @@ How lynkrobotics.org got from the old Google Sites site to this repository, and
 what is left to do. Day-to-day publishing is in [README.md](README.md).
 
 **The site is live at <https://www.lynkrobotics.org>, and setup is complete.**
-The only thing left is optional: `AAAA` records on the apex for IPv6.
+Nothing is outstanding. This file is now a record of how it is put together.
 
 ---
 
@@ -17,7 +17,7 @@ The only thing left is optional: `AAAA` records on the apex for IPv6.
 | Custom domain | `www.lynkrobotics.org` — **canonical**, see below |
 | Apex | `lynkrobotics.org` 301-redirects to `www` |
 | HTTPS | Certificate issued, Enforce HTTPS on |
-| DNS | Apex → GitHub `A` records; `www` → `lynkrobotics.github.io` |
+| DNS | Apex → GitHub `A` + `AAAA` records; `www` → `lynkrobotics.github.io` |
 | Previews | Cloudflare Workers builds every branch, comments the URL on the PR |
 | Merge rules | Ruleset on `main`; only `website-maintainers` can merge |
 | Google Site | Trimmed to Home + Board Members, links repointed |
@@ -54,7 +54,7 @@ Nameservers are `ns-cloud-b1.googledomains.com` … `b4`, i.e. the Google Domain
 | Host | Type | Value |
 | --- | --- | --- |
 | `@` | A | `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` |
-| `@` | AAAA | `2606:50c0:8000::153`, `8001::153`, `8002::153`, `8003::153` — *not yet added* |
+| `@` | AAAA | `2606:50c0:8000::153`, `2606:50c0:8001::153`, `2606:50c0:8002::153`, `2606:50c0:8003::153` |
 | `www` | CNAME | `lynkrobotics.github.io.` |
 
 The apex `A` records are still needed even though `www` is canonical — they are
@@ -62,9 +62,9 @@ what lets GitHub answer on the apex in order to redirect it.
 
 `docs.lynkrobotics.org` is unrelated and should be left alone.
 
-**Still worth doing:** the apex has no `AAAA` records, so IPv6-only visitors
-cannot reach it. Not urgent — every other visitor is fine, and `www` already
-has IPv6 — but add them when convenient.
+Both record types are needed on the apex. The `A` and `AAAA` records let GitHub
+answer there over IPv4 and IPv6 respectively, purely so it can issue the
+redirect to `www`.
 
 ## Connect Cloudflare for previews
 
@@ -237,12 +237,6 @@ Then update what remains:
 - The body text link on "LYNK" → <https://www.lynkrobotics.org>
 - On **Our People**, the sentence about mentors → <https://www.lynkrobotics.org/our-people/mentors/>
 
-## Still optional
-
-- **Apex `AAAA` records**, per the DNS table above. Without them,
-  IPv6-only visitors cannot reach `lynkrobotics.org` to be redirected to `www`.
-  Everyone else is unaffected.
-
 ## A cross-site link to keep an eye on
 
 lynkrobotics.org links out to the Inspire Carolina board page in two places —
@@ -271,4 +265,4 @@ those two files.
 - [x] Ruleset on `main` restricting who can merge
 - [x] Google Site trimmed, links repointed
 - [x] Sitemap submitted to Search Console
-- [ ] Apex `AAAA` records added for IPv6
+- [x] Apex `AAAA` records added for IPv6
