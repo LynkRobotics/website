@@ -4,6 +4,10 @@
 group of maintainers approves and publishes it.** Nothing you do can put
 something on the live site by accident.
 
+> **Not technical?** Read **[GUIDE.md](GUIDE.md)** instead. It covers the same
+> ground without assuming you know what Git is, and starts from having no
+> accounts at all. This page is the shorter, more technical version.
+
 ```
   anyone in the org                     website maintainers
   ─────────────────                     ───────────────────
@@ -19,7 +23,9 @@ something on the live site by accident.
 You do not need to know Git, Eleventy, or HTML.
 
 1. Open the repository in [Claude Code](https://claude.ai/code).
-2. Describe the change in plain language:
+2. Describe the change in plain language, or use one of the shortcuts the
+   repository provides — `/add-mentor`, `/add-sponsor`, `/update-events`,
+   `/new-season` — which prompt you for exactly what each task needs:
 
    > Add Jane Doe to the mentors page — Mechanical Mentor, engineer at Acme,
    > joined 2026. Her photo is attached.
@@ -68,6 +74,11 @@ few lines of JSON, not HTML.
 
 You will not see a Merge button, and that is expected — merging is restricted
 to maintainers.
+
+## Not using Claude at all
+
+Open a request and a maintainer will handle it:
+<https://github.com/LynkRobotics/website/issues/new/choose>
 
 ## Becoming a maintainer
 

@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: How to change the website yourself
+    url: https://github.com/LynkRobotics/website/blob/main/GUIDE.md
+    about: A five-minute walkthrough. No technical knowledge needed.
+  - name: Email the team
+    url: mailto:info@lynkrobotics.org
+    about: For anything that is not a website change.

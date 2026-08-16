@@ -6,11 +6,12 @@ operating under Inspire Carolina, Inc.
 Static site built with [Eleventy](https://www.11ty.dev/), published to GitHub
 Pages at <https://www.lynkrobotics.org>.
 
-> **Want to change something?** [CONTRIBUTING.md](CONTRIBUTING.md) is the
-> short version — you do not need to know Git or HTML.
+> **Want to change something on the site?** Start with
+> **[GUIDE.md](GUIDE.md)** — a walkthrough from nothing to a published change.
+> No technical knowledge needed.
 >
-> **Setting up hosting or permissions?** [SETUP.md](SETUP.md) records how the
-> domain, deploys and merge rules are configured.
+> **Working on the code?** [CONTRIBUTING.md](CONTRIBUTING.md).
+> **Hosting and permissions?** [SETUP.md](SETUP.md).
 
 ---
 
