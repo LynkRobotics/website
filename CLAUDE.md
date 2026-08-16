@@ -75,8 +75,8 @@ finished this way:
 3. Publish `review.html` as an artifact and put the link in your reply.
 4. Push the branch and open a pull request — never push to `main`, which is
    protected. Fill in `.github/pull_request_template.md`; it prompts for the
-   pages affected, which is what a reviewer needs. Cloudflare Pages comments a
-   live, clickable preview URL on the PR within a minute or so.
+   pages affected, which is what a reviewer needs. Cloudflare comments a live,
+   clickable preview URL on the PR within a minute or so.
 
 So the reviewer gets two things without lifting a finger: screenshots in the
 reply for an immediate look, and a real browsable site on the PR.

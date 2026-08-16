@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "type": "module",
-  "description": "Website for LYNK Robotics (FRC Team 9496) \u2014 lynkrobotics.org",
+  "description": "Website for LYNK Robotics (FRC Team 9496) — lynkrobotics.org",
   "license": "UNLICENSED",
   "scripts": {
     "start": "eleventy --serve",
@@ -15,6 +15,7 @@
     "review": "node scripts/review-shots.mjs"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^3.0.0"
+    "@11ty/eleventy": "^3.0.0",
+    "wrangler": "^4.123.0"
   }
 }

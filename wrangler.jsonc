@@ -1,0 +1,23 @@
+{
+  // Cloudflare Workers config, used only for preview deployments.
+  //
+  // The live site is GitHub Pages at www.lynkrobotics.org — see README.md.
+  // Cloudflare builds every branch so a change can be reviewed in a real
+  // browser before it is merged, and posts the preview URL on the pull
+  // request. It never serves the custom domain.
+  //
+  // "name" must match the project name in the Cloudflare dashboard.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "lynk-website",
+  "compatibility_date": "2026-08-16",
+
+  // No "main" entry point: this is an assets-only Worker. Cloudflare serves
+  // the files that `npm run build:preview` writes into _site/ and runs no
+  // server-side code.
+  "assets": {
+    "directory": "./_site/",
+    // Serve our own styled 404 page for unmatched paths, matching how GitHub
+    // Pages behaves on the live site.
+    "not_found_handling": "404-page"
+  }
+}

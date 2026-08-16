@@ -63,8 +63,8 @@ Two ways, both handed to you:
 
 - **Screenshots**, linked in Claude's reply. Fastest look — every page the
   change touched, desktop and phone, no waiting.
-- **A real preview site**, linked from a comment on the pull request. Cloudflare
-  Pages builds every branch automatically. Click through it, test the
+- **A real preview site**, linked from a comment on the pull request.
+  Cloudflare builds every branch automatically. Click through it, test the
   navigation, try it on your phone. Preview builds carry a small **Preview**
   badge and are blocked from search engines, so they can never be mistaken for
   the live site.
@@ -134,10 +134,11 @@ Requires Node.js 20 or newer.
 - **Source of truth:** the `main` branch of this repository.
 - **Production:** `.github/workflows/deploy.yml` builds and deploys to GitHub
   Pages on every push to `main`.
-- **Previews:** Cloudflare Pages builds every other branch with
-  `npm run build:preview` and posts the URL on the pull request. It never
-  serves the custom domain — `mark-preview.mjs` strips `CNAME`, blocks
-  indexing and stamps a Preview badge on every page.
+- **Previews:** Cloudflare Workers builds every other branch with
+  `npm run build:preview` and comments the preview URL on the pull request.
+  Configured by `wrangler.jsonc` (an assets-only Worker). It never serves the
+  custom domain — `mark-preview.mjs` strips `CNAME`, blocks indexing and stamps
+  a Preview badge on every page.
 - **Custom domain:** `src/CNAME` contains `www.lynkrobotics.org`, and that file
   is what actually sets the custom domain on each deploy — it overrides the
   Settings → Pages box. The build fails if it goes missing or disagrees.

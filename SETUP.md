@@ -4,8 +4,8 @@ How lynkrobotics.org got from the old Google Sites site to this repository, and
 what is left to do. Day-to-day publishing is in [README.md](README.md).
 
 **The site is live at <https://www.lynkrobotics.org>.** Outstanding: connecting
-Cloudflare Pages for previews, setting up who can propose versus publish, and
-tidying the Google Site.
+Cloudflare for previews, setting up who can propose versus publish, and tidying
+the Google Site.
 
 ---
 
@@ -63,56 +63,83 @@ what lets GitHub answer on the apex in order to redirect it.
 cannot reach it. Not urgent — every other visitor is fine, and `www` already
 has IPv6 — but add them when convenient.
 
-## Connect Cloudflare Pages for previews
+## Connect Cloudflare for previews
 
-**This is the one setup step still outstanding.** It gives every branch an
-automatic, clickable preview URL so a change can be reviewed without running
-anything locally. Production is untouched — GitHub Pages keeps serving
-www.lynkrobotics.org exactly as it does now.
+Gives every branch an automatic, clickable preview URL, posted as a comment on
+the pull request, so a change can be reviewed without running anything locally.
+Production is untouched — GitHub Pages keeps serving www.lynkrobotics.org.
 
-About five minutes, free tier, no card required.
+Free tier, no card required.
 
-1. Sign in at <https://dash.cloudflare.com> (create an account if needed).
-2. **Compute (Workers & Pages) → Create → Pages → Connect to Git.**
-3. Authorise Cloudflare for the **LynkRobotics** org and pick the **website**
-   repository. Granting access to just that one repo is fine.
-4. Set the build configuration:
+> **Workers, not Pages.** Cloudflare has absorbed Pages into Workers, and new
+> projects go through the Workers flow — the setup screen says "Configure your
+> Worker project" and the deploy command is `npx wrangler deploy`. That is the
+> right path; do not go looking for the old Pages UI. Workers Builds posts the
+> same PR comments with preview URLs.
+
+### Settings
+
+1. <https://dash.cloudflare.com> → **Compute (Workers & Pages)** → **Create** →
+   **Import a repository**.
+2. Authorise Cloudflare for the **LynkRobotics** org and pick **website**.
+   Granting access to just that one repository is fine.
+3. Fill in:
 
    | Field | Value |
    | --- | --- |
-   | Project name | `lynk-website` (this becomes `lynk-website.pages.dev`) |
-   | Production branch | `main` |
-   | Framework preset | None |
+   | Project name | `lynk-website` |
    | Build command | `npm run build:preview` |
-   | Build output directory | `_site` |
+   | Deploy command | `npx wrangler deploy` *(the default)* |
+   | Builds for non-production branches | **ticked** |
+   | Non-production branch deploy command | `npx wrangler versions upload` *(the default)* |
+   | Path | `/` *(the default)* |
+   | API token | **Create new token**, name it `lynk-website-builds` |
 
-   The Node version comes from the `.node-version` file in the repo, so there
-   is nothing to set for it.
+   Everything except the build command is Cloudflare's default. The API token
+   is created automatically — you only supply a name.
 
-5. **Save and Deploy.**
+   **The project name must be exactly `lynk-website`,** because it has to match
+   `"name"` in `wrangler.jsonc`. A mismatch fails the deploy.
 
-That is it. From then on Cloudflare builds every branch and every pull request
-and comments the preview URL on the PR.
+4. **Save and Deploy.**
+
+### What each command does
+
+- **Build command** `npm run build:preview` — builds the site into `_site/`,
+  then marks it as a preview (below).
+- **Deploy command** `npx wrangler deploy` — runs on `main` only. Publishes to
+  `lynk-website.<your-subdomain>.workers.dev`.
+- **Non-production deploy** `npx wrangler versions upload` — runs on every
+  other branch. Uploads a *version* without making it live, which is what
+  generates the shareable preview URL Cloudflare comments on the pull request.
+- **Path** `/` — the repository root, where `package.json` and
+  `wrangler.jsonc` live.
+
+`wrangler.jsonc` in the repository is what makes this work. It is an
+assets-only Worker — no server code, no entry point — that serves whatever is
+in `_site/`, with `not_found_handling` set so a bad URL gets our styled 404
+page just as it does on the live site.
 
 ### Why the build command is `build:preview`, not `build`
 
-`npm run build:preview` runs the normal build and then `scripts/mark-preview.mjs`,
-which makes a Cloudflare deployment unmistakably *not* the live site:
+`npm run build:preview` runs the normal build and then
+`scripts/mark-preview.mjs`, which makes a Cloudflare deployment unmistakably
+*not* the live site:
 
 - deletes `CNAME`, so it can never claim www.lynkrobotics.org;
 - writes a disallow-all `robots.txt` and adds `noindex` to every page, so
-  `*.pages.dev` URLs stay out of Google;
-- stamps a small **Preview** badge, naming the branch, on every page.
+  `*.workers.dev` URLs stay out of Google;
+- stamps a small **Preview** badge, naming the branch and commit, on every page.
 
-Cloudflare will also build `main` and publish it at `lynk-website.pages.dev`.
-That is harmless — it carries the same badge and noindex, and no DNS points at
-it. The live site remains GitHub Pages.
+Cloudflare also builds `main` and publishes it at
+`lynk-website.<subdomain>.workers.dev`. That is harmless — it carries the same
+badge and noindex, and no DNS points at it. The live site remains GitHub Pages.
 
 ### If you would rather not use Cloudflare
 
-Delete the project in the Cloudflare dashboard and nothing in this repository
-breaks; `build:preview` simply stops being called. You would be back to
-reviewing from the screenshots in Claude's replies, or locally with
+Delete the project in the Cloudflare dashboard. Nothing in this repository
+breaks; `build:preview` and `wrangler.jsonc` simply stop being used. You would
+be back to reviewing from the screenshots in Claude's replies, or locally with
 `npm start`.
 
 ## Who can propose and who can publish
@@ -240,7 +267,7 @@ Then update what remains:
 - [x] Registrar domain forwarding turned off
 - [x] Custom domain set to `www.lynkrobotics.org`
 - [x] Enforce HTTPS ticked
-- [ ] Cloudflare Pages connected for automatic previews
+- [ ] Cloudflare connected for automatic previews
 - [ ] `website-contributors` and `website-maintainers` teams created, both Write
 - [ ] Branch protection on `main`, with push restricted to maintainers
 - [ ] Verified: a contributor can open a PR but cannot merge it
