@@ -3,9 +3,9 @@
 How lynkrobotics.org got from the old Google Sites site to this repository, and
 what is left to do. Day-to-day publishing is in [README.md](README.md).
 
-**The site is live at <https://www.lynkrobotics.org>.** Two things are
-outstanding: connecting Cloudflare Pages for automatic previews, and tidying
-the Google Site.
+**The site is live at <https://www.lynkrobotics.org>.** Outstanding: connecting
+Cloudflare Pages for previews, setting up who can propose versus publish, and
+tidying the Google Site.
 
 ---
 
@@ -115,6 +115,80 @@ breaks; `build:preview` simply stops being called. You would be back to
 reviewing from the screenshots in Claude's replies, or locally with
 `npm start`.
 
+## Who can propose and who can publish
+
+The goal: **anyone in the LynkRobotics org can open a pull request; only a few
+people can merge it and put it live.** Three things set that up. All of them
+are GitHub settings — the repository already carries the files they depend on
+(`.github/CODEOWNERS`, the pull request template, CONTRIBUTING.md).
+
+### 1. Two teams
+
+At <https://github.com/orgs/LynkRobotics/teams>, create:
+
+| Team | Members | Repo access |
+| --- | --- | --- |
+| `website-contributors` | everyone who should be able to propose changes | **Write** |
+| `website-maintainers` | the few who may publish | **Write** |
+
+Both get **Write** — that is deliberate. Write is what lets someone push a
+branch and open a pull request. Merging is restricted separately, in step 2;
+that is the only thing that separates the two groups.
+
+Grant access under the repository's **Settings → Collaborators and teams →
+Add teams**. Do not give either team Admin.
+
+> The team slug must be exactly `website-maintainers`, because
+> `.github/CODEOWNERS` names it. If you prefer a different name, change it in
+> both places.
+>
+> Alternatively, skip `website-contributors` and set the organisation's base
+> permission to **Write** (Organization settings → Member privileges). That
+> covers every org member automatically, but applies to every repository in
+> the org — the team is the tighter option.
+
+### 2. Protect `main`
+
+**Settings → Branches → Add branch protection rule**, branch name pattern
+`main`:
+
+- [x] **Require a pull request before merging**
+  - [x] Require approvals — **1**
+  - [x] Dismiss stale pull request approvals when new commits are pushed
+  - [x] **Require review from Code Owners**
+- [x] **Require status checks to pass before merging**
+  - [x] Require branches to be up to date before merging
+  - Search for and select **build** (from the *Build check* workflow)
+- [x] **Restrict who can push to matching branches**
+  - Add the **website-maintainers** team
+- [x] **Do not allow bypassing the above settings**
+
+**"Restrict who can push" is the setting that does the real work.** Merging a
+pull request is a push to `main`, so restricting pushes also restricts
+merging: everyone else keeps a fully working *Open pull request* button and no
+*Merge* button at all.
+
+"Require review from Code Owners" then makes the approval meaningful — with
+`CODEOWNERS` marking maintainers as the owner of every file, a pull request
+cannot go in without one of them signing off.
+
+> Using **Rules → Rulesets** instead of classic branch protection works too.
+> Target `main`, enable *Require a pull request before merging*,
+> *Require review from Code Owners*, *Require status checks*, and
+> *Restrict updates*, then put `website-maintainers` in the bypass list.
+
+### 3. Check it
+
+Ask someone in `website-contributors` but *not* in `website-maintainers` to
+open a trivial pull request. They should be able to open it and see the
+preview, and the Merge button should be greyed out with "Merging is blocked".
+
+### What this changes for Claude
+
+Claude can no longer push to `main`, which is the point. From here on it
+pushes a branch and opens a pull request like everyone else, and a maintainer
+merges. `CLAUDE.md` records this.
+
 ## Tidy up the Google Site
 
 The other outstanding task. Edit the Google Site at inspirecarolina.org so the two
@@ -153,8 +227,6 @@ Then update what remains:
   <https://search.google.com/search-console> and submit
   `https://www.lynkrobotics.org/sitemap.xml`. This is what moves Google's index
   across; without it the Google Sites URLs linger for weeks.
-- **Branch protection.** Settings → Branches → require a pull request for
-  `main`. Makes the review step in README.md a guarantee rather than a habit.
 - **Apex AAAA records**, per the DNS table above.
 
 ---
@@ -169,6 +241,9 @@ Then update what remains:
 - [x] Custom domain set to `www.lynkrobotics.org`
 - [x] Enforce HTTPS ticked
 - [ ] Cloudflare Pages connected for automatic previews
+- [ ] `website-contributors` and `website-maintainers` teams created, both Write
+- [ ] Branch protection on `main`, with push restricted to maintainers
+- [ ] Verified: a contributor can open a PR but cannot merge it
 - [ ] Apex `AAAA` records added for IPv6
 - [ ] Google Site trimmed, links repointed
 - [ ] Sitemap submitted to Search Console

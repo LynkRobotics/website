@@ -45,6 +45,7 @@ src/
 scripts/check-links.mjs     fails the build on a broken internal link
 scripts/mark-preview.mjs    turns a build into a badged, noindexed preview
 scripts/review-shots.mjs    screenshots the site into a single review page
+.github/CODEOWNERS          maintainers own every file; gates PR approval
 .github/workflows/          deploy (on main) and build check (on PRs)
 ```
 
@@ -72,8 +73,10 @@ finished this way:
    self-contained file. List only the affected pages; omit `--pages` to capture
    the whole site.
 3. Publish `review.html` as an artifact and put the link in your reply.
-4. Push the branch and open a pull request. Cloudflare Pages comments a live,
-   clickable preview URL on the PR within a minute or so.
+4. Push the branch and open a pull request — never push to `main`, which is
+   protected. Fill in `.github/pull_request_template.md`; it prompts for the
+   pages affected, which is what a reviewer needs. Cloudflare Pages comments a
+   live, clickable preview URL on the PR within a minute or so.
 
 So the reviewer gets two things without lifting a finger: screenshots in the
 reply for an immediate look, and a real browsable site on the PR.
@@ -147,9 +150,14 @@ GIFs. They are far smaller than GIF and drop into an ordinary `<img>`.
 `.github/workflows/deploy.yml`, which builds and deploys to GitHub Pages,
 served at www.lynkrobotics.org.
 
-**Do all work on a branch and open a pull request.** A human reviews the
-screenshots and the Cloudflare preview, then merges. Never commit straight to
-`main` unless asked to.
+**Always work on a branch and open a pull request. Never push to `main`.**
+`main` is protected: pushes to it are restricted to the website-maintainers
+team, so a direct push will be rejected. A maintainer reviews the screenshots
+and the Cloudflare preview, then merges — that merge is what publishes.
+
+Anyone in the LynkRobotics org can open a pull request; only maintainers can
+merge one. CONTRIBUTING.md explains this to contributors, SETUP.md records the
+GitHub settings behind it.
 
 `src/CNAME` must keep containing `www.lynkrobotics.org` — the deploy fails
 loudly if it goes missing, because losing it would drop the custom domain, and

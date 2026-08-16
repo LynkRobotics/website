@@ -1,0 +1,15 @@
+# Who can approve a change to lynkrobotics.org
+#
+# Every file in this repository is owned by the website maintainers. Combined
+# with the branch protection rules on `main` (see SETUP.md → "Who can propose
+# and who can publish"), this means a pull request cannot be merged until
+# someone on this list approves it.
+#
+# Manage the people, not this file: add or remove members of the
+# website-maintainers team at
+# https://github.com/orgs/LynkRobotics/teams/website-maintainers
+#
+# @rjbell4 is listed as a fallback so approvals still work if the team is ever
+# renamed or emptied. Remove that entry once the team is well established.
+
+* @LynkRobotics/website-maintainers @rjbell4

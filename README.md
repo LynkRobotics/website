@@ -6,9 +6,11 @@ operating under Inspire Carolina, Inc.
 Static site built with [Eleventy](https://www.11ty.dev/), published to GitHub
 Pages at <https://www.lynkrobotics.org>.
 
-> **Setting this up for the first time?** Start with [SETUP.md](SETUP.md) —
-> the branch, GitHub Pages and DNS steps that have to happen once before
-> lynkrobotics.org serves this site.
+> **Want to change something?** [CONTRIBUTING.md](CONTRIBUTING.md) is the
+> short version — you do not need to know Git or HTML.
+>
+> **Setting up hosting or permissions?** [SETUP.md](SETUP.md) records how the
+> domain, deploys and merge rules are configured.
 
 ---
 
@@ -35,7 +37,12 @@ Ask for a change; review it; merge it. **Nothing to install, nothing to run.**
   GitHub Actions deploys  →  www.lynkrobotics.org  (1–2 min)
 ```
 
-Nothing reaches the public site until a human merges to `main`.
+Nothing reaches the public site until a maintainer merges to `main`.
+
+**Anyone in the LynkRobotics org can propose a change; only the website
+maintainers can publish one.** See [CONTRIBUTING.md](CONTRIBUTING.md) if you
+are proposing, and [SETUP.md](SETUP.md#who-can-propose-and-who-can-publish) for
+the GitHub settings that enforce it.
 
 ### 1. Ask for a change
 
@@ -64,8 +71,12 @@ Two ways, both handed to you:
 
 ### 3. Publish
 
-Merge the pull request. The **Deploy to GitHub Pages** workflow runs
-automatically; when it goes green the change is live at www.lynkrobotics.org.
+A maintainer merges the pull request. The **Deploy to GitHub Pages** workflow
+runs automatically; when it goes green the change is live at
+www.lynkrobotics.org.
+
+If you do not see a Merge button, that is expected — merging is restricted to
+the `website-maintainers` team.
 
 To roll back, revert the merge commit on `main` — the next deploy restores the
 previous state.
