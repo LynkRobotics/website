@@ -42,6 +42,7 @@ src/
   *.njk                     one file per page
   seasons/season.njk        generates /seasons/<year>/ for every entry in seasons.json
   redirect.njk              generates a stub for every entry in redirects.json
+.claude/skills/            /add-mentor, /add-sponsor, /update-events, /new-season
 scripts/check-links.mjs     fails the build on a broken internal link
 scripts/mark-preview.mjs    turns a build into a badged, noindexed preview
 scripts/review-shots.mjs    screenshots the site into a single review page
@@ -106,6 +107,13 @@ present in Claude Code environments.
   script or a Google Fonts link would undo this.
 
 ## Adding things
+
+Four project skills in `.claude/skills/` cover the common jobs and encode the
+gotchas — event codes matching venues, sponsor logo dimensions, season results
+coming from The Blue Alliance. Use them when a request matches, rather than
+working from the notes below. Most people asking are not technical: see
+GUIDE.md for the vocabulary they will use and expect back.
+
 
 **A mentor:** add an object to `src/_data/mentors.json` and put a square photo
 in `src/assets/img/mentors/<first-last>.jpg` (about 500×500, JPEG quality ~82).

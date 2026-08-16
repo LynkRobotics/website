@@ -1,0 +1,69 @@
+name: Request a website change
+description: Ask for something on lynkrobotics.org to be added, changed or removed. No technical knowledge needed.
+title: "Website: "
+labels: ["website request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Fill this in and a maintainer will take it from there. You do not need
+        to know how the website is built.
+
+        **In a hurry, or want to see it yourself first?** You can make the
+        change directly by asking Claude — it takes about five minutes and no
+        technical knowledge. See the
+        [walkthrough](https://github.com/LynkRobotics/website/blob/main/GUIDE.md).
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of change is this?
+      options:
+        - Add or update a mentor
+        - Add or update a sponsor / investor
+        - Competition dates or meeting times
+        - Fix wording or a typo
+        - Add or replace photos
+        - Season page (results, roster, robot)
+        - Something else
+    validations:
+      required: true
+
+  - type: input
+    id: page
+    attributes:
+      label: Which page?
+      description: A link, or just the name of the page. Write "not sure" if you do not know.
+      placeholder: https://www.lynkrobotics.org/our-people/mentors/
+    validations:
+      required: true
+
+  - type: textarea
+    id: change
+    attributes:
+      label: What should change?
+      description: |
+        Describe it the way you would say it out loud. If you are replacing
+        words, give the exact new wording. Attach photos by dragging them into
+        this box.
+      placeholder: |
+        Add Jane Doe to the mentors page. She is a Mechanical Engineer at Acme
+        and is our Design Mentor. Her "My whY" is: "I mentor because ..."
+        Photo attached. She joined this season and is an FRC alum.
+    validations:
+      required: true
+
+  - type: input
+    id: deadline
+    attributes:
+      label: Is it needed by a particular date?
+      description: Optional. Say so if it is tied to a competition or an event.
+      placeholder: Before the Wake Forest event on March 20
+
+  - type: checkboxes
+    id: confirm
+    attributes:
+      label: Before submitting
+      options:
+        - label: I have checked the details above are correct (names, spellings, dates)
+          required: true
