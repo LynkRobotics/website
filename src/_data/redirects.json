@@ -29,7 +29,7 @@
   },
   {
     "from": "/our-people/board-members-ici/",
-    "to": "https://www.inspirecarolina.org/our-people/board-members-ici"
+    "to": "https://www.inspirecarolina.org/board-members"
   },
   {
     "from": "/our-people/mentors-lynk/",
@@ -45,6 +45,6 @@
   },
   {
     "from": "/our-people/board/",
-    "to": "https://www.inspirecarolina.org/our-people/board-members-ici"
+    "to": "https://www.inspirecarolina.org/board-members"
   }
 ]

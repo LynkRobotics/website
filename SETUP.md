@@ -3,9 +3,8 @@
 How lynkrobotics.org got from the old Google Sites site to this repository, and
 what is left to do. Day-to-day publishing is in [README.md](README.md).
 
-**The site is live at <https://www.lynkrobotics.org>.** Outstanding: connecting
-Cloudflare for previews, setting up who can propose versus publish, and tidying
-the Google Site.
+**The site is live at <https://www.lynkrobotics.org>, and setup is complete.**
+The only thing left is optional: `AAAA` records on the apex for IPv6.
 
 ---
 
@@ -19,6 +18,10 @@ the Google Site.
 | Apex | `lynkrobotics.org` 301-redirects to `www` |
 | HTTPS | Certificate issued, Enforce HTTPS on |
 | DNS | Apex → GitHub `A` records; `www` → `lynkrobotics.github.io` |
+| Previews | Cloudflare Workers builds every branch, comments the URL on the PR |
+| Merge rules | Ruleset on `main`; only `website-maintainers` can merge |
+| Google Site | Trimmed to Home + Board Members, links repointed |
+| Search Console | `www.lynkrobotics.org` sitemap submitted |
 
 ## Why `www` is the canonical host
 
@@ -149,30 +152,16 @@ people can merge it and put it live.** Three things set that up. All of them
 are GitHub settings — the repository already carries the files they depend on
 (`.github/CODEOWNERS`, the pull request template, CONTRIBUTING.md).
 
-### 1. Two teams
+### 1. The maintainers team
 
-At <https://github.com/orgs/LynkRobotics/teams>, create:
+[`website-maintainers`](https://github.com/orgs/LynkRobotics/teams/website-maintainers)
+holds the people who may publish. `.github/CODEOWNERS` names that exact slug,
+so renaming the team means editing that file too.
 
-| Team | Members | Repo access |
-| --- | --- | --- |
-| `website-contributors` | everyone who should be able to propose changes | **Write** |
-| `website-maintainers` | the few who may publish | **Write** |
-
-Both get **Write** — that is deliberate. Write is what lets someone push a
-branch and open a pull request. Merging is restricted separately, in step 2;
-that is the only thing that separates the two groups.
-
-Grant access under the repository's **Settings → Collaborators and teams →
-Add teams**. Do not give either team Admin.
-
-> The team slug must be exactly `website-maintainers`, because
-> `.github/CODEOWNERS` names it. If you prefer a different name, change it in
-> both places.
->
-> Alternatively, skip `website-contributors` and set the organisation's base
-> permission to **Write** (Organization settings → Member privileges). That
-> covers every org member automatically, but applies to every repository in
-> the org — the team is the tighter option.
+There is deliberately no contributors team: every member of the org already has
+enough access to push a branch and open a pull request, which is all proposing
+a change requires. Merging is restricted separately, in step 2 — that
+restriction is the only thing separating the two groups.
 
 ### 2. Protect `main`
 
@@ -206,9 +195,9 @@ cannot go in without one of them signing off.
 
 ### 3. Check it
 
-Ask someone in `website-contributors` but *not* in `website-maintainers` to
-open a trivial pull request. They should be able to open it and see the
-preview, and the Merge button should be greyed out with "Merging is blocked".
+Ask an org member who is *not* in `website-maintainers` to open a trivial pull
+request. They should be able to open it and see the preview, and the Merge
+button should be greyed out with "Merging is blocked".
 
 ### What this changes for Claude
 
@@ -248,13 +237,23 @@ Then update what remains:
 - The body text link on "LYNK" → <https://www.lynkrobotics.org>
 - On **Our People**, the sentence about mentors → <https://www.lynkrobotics.org/our-people/mentors/>
 
-## Optional, once things settle
+## Still optional
 
-- **Search Console.** Add `www.lynkrobotics.org` at
-  <https://search.google.com/search-console> and submit
-  `https://www.lynkrobotics.org/sitemap.xml`. This is what moves Google's index
-  across; without it the Google Sites URLs linger for weeks.
-- **Apex AAAA records**, per the DNS table above.
+- **Apex `AAAA` records**, per the DNS table above. Without them,
+  IPv6-only visitors cannot reach `lynkrobotics.org` to be redirected to `www`.
+  Everyone else is unaffected.
+
+## A cross-site link to keep an eye on
+
+lynkrobotics.org links out to the Inspire Carolina board page in two places —
+`parentOrg.boardUrl` in `src/_data/site.json`, and two entries in
+`src/_data/redirects.json`. Nothing in this repository can detect when that
+page moves, because `check-links.mjs` deliberately only checks internal links.
+
+It has already moved once: reorganising the Google Site shifted the board from
+`/our-people/board-members-ici` to `/board-members`, which broke both links
+until they were repointed. If the Google Site is restructured again, check
+those two files.
 
 ---
 
@@ -267,11 +266,9 @@ Then update what remains:
 - [x] Registrar domain forwarding turned off
 - [x] Custom domain set to `www.lynkrobotics.org`
 - [x] Enforce HTTPS ticked
-- [ ] Cloudflare connected for automatic previews
-- [ ] `website-contributors` and `website-maintainers` teams created, both Write
-- [ ] Branch protection on `main`, with push restricted to maintainers
-- [ ] Verified: a contributor can open a PR but cannot merge it
+- [x] Cloudflare connected for automatic previews
+- [x] `website-maintainers` team created
+- [x] Ruleset on `main` restricting who can merge
+- [x] Google Site trimmed, links repointed
+- [x] Sitemap submitted to Search Console
 - [ ] Apex `AAAA` records added for IPv6
-- [ ] Google Site trimmed, links repointed
-- [ ] Sitemap submitted to Search Console
-- [ ] Branch protection on `main`
